@@ -1,5 +1,6 @@
 import { Paper, Stack, Text } from "@mantine/core";
-import ProductShowcase from "@/components/product-showcase";
+import ProductShowcase from "@/components/home/product-showcase";
+import { ContactUs } from "@/components/home/contact-us";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
 
       <Stack c={"white"} pt={"lg"}>
         <ProductShowcase />
+        <ContactUs/>
       </Stack> 
     </Stack>
   );
