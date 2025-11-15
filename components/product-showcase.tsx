@@ -1,15 +1,25 @@
+"use client"
 import { Carousel, CarouselSlide } from "@mantine/carousel";
-import { Stack, Box } from "@mantine/core";
+import { Stack, Box, Image, Overlay } from "@mantine/core";
+import autoFass from "@/img/auto-fass.png";
+import { useState } from "react";
 
 export default function ProductShowcase() {
+  const [active, setActive] = useState(0);
+  const slides = [1, 2, 3, 4];
+
   return (
-    <Stack c="white" align="center">
+    <Stack c="white" align="center" className="relative">
+      {/* <Overlay 
+        gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%)"
+        opacity={0.85}
+        zIndex={1}
+      /> */}
+
       <Box
-        // Background that simulates a spotlight
         style={{
           position: "relative",
-          width: "100%",
-          maxWidth: 400,
+          width: "full",
           paddingTop: 80,
         }}
       >
@@ -33,11 +43,11 @@ export default function ProductShowcase() {
         <Box
           style={{
             position: "absolute",
-            bottom: -30,
+            bottom: 90,
             left: "50%",
             transform: "translateX(-50%)",
-            width: 260,
-            height: 40,
+            width: 200,
+            height: 60,
             background: "linear-gradient(to top, #333, #555)",
             borderRadius: "50%",
             boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
@@ -45,51 +55,37 @@ export default function ProductShowcase() {
         />
 
         {/* Carousel */}
-        <Carousel withIndicators height={400} slideSize="100%">
-          <CarouselSlide>
-            <Box
-              style={{
-                height: 300,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 40,
-                fontWeight: 700,
-              }}
-            >
-              1
-            </Box>
-          </CarouselSlide>
-
-          <CarouselSlide>
-            <Box
-              style={{
-                height: 300,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 40,
-                fontWeight: 700,
-              }}
-            >
-              2
-            </Box>
-          </CarouselSlide>
-
-          <CarouselSlide>
-            <Box
-              style={{
-                height: 300,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 40,
-                fontWeight: 700,
-              }}
-            >
-              3
-            </Box>
-          </CarouselSlide>
+        <Carousel 
+          withIndicators 
+          height={400} 
+          slideSize="50%"
+          onSlideChange={setActive}
+          emblaOptions={{
+            loop: true,
+            dragFree: false,
+            align: "center"
+          }}
+        >
+          {slides.map((item, index) => (
+            <CarouselSlide key={index}>
+              <Box
+                style={{
+                  height: 300,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 40,
+                  fontWeight: 700,
+                }}
+                className={`
+                  transition-transform duration-300 ease-in-out
+                  ${active === index ? "scale-105" : "scale-50"}
+                `}
+              >
+                <Image src={autoFass.src} h={"100%"} fit="contain" />
+              </Box>
+            </CarouselSlide>
+          ))}
         </Carousel>
       </Box>
     </Stack>
