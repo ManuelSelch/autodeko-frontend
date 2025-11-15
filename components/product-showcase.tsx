@@ -79,7 +79,7 @@ export default function ProductShowcase() {
                 }}
                 className={`
                   transition-transform duration-300 ease-in-out
-                  ${active === index ? "scale-105" : "scale-50"}
+                  ${active === index ? "scale-105" : "scale-80"}
                 `}
               >
                 <Image src={autoFass.src} h={"100%"} fit="contain" />
