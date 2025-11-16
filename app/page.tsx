@@ -1,8 +1,11 @@
 import { Paper, Stack, Text } from "@mantine/core";
 import ProductShowcase from "@/components/home/product-showcase";
 import { ContactUs } from "@/components/home/contact-us";
+import api from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const products = await api.getProducts();
+
   return (
     <Stack>
       <Stack align="center" gap={0} py="lg" bg="light">
@@ -12,7 +15,7 @@ export default function Home() {
       </Stack>
 
       <Stack c={"white"} pt={"lg"}>
-        <ProductShowcase />
+        <ProductShowcase products={products} />
         <ContactUs/>
       </Stack> 
     </Stack>

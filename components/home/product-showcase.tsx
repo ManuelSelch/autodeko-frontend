@@ -4,9 +4,8 @@ import { Stack, Box, Image, Overlay } from "@mantine/core";
 import autoFass from "@/img/auto-fass.png";
 import { useState } from "react";
 
-export default function ProductShowcase() {
+export default function ProductShowcase({products}: {products: any[]}) {
   const [active, setActive] = useState(0);
-  const slides = [1, 2, 3, 4];
 
   return (
     <Stack c="white" align="center" className="relative">
@@ -66,7 +65,7 @@ export default function ProductShowcase() {
             align: "center"
           }}
         >
-          {slides.map((item, index) => (
+          {products.map((product, index) => (
             <CarouselSlide key={index}>
               <Box
                 style={{
