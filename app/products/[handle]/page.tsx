@@ -15,6 +15,7 @@ import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
 import { buildProductInquiryHref } from "@/lib/contact/product-inquiry";
 import { formatMoney } from "@/lib/shopify/format-money";
+import { splitProductTitle } from "@/lib/shopify/split-product-title";
 import type { ProductImage } from "@/lib/shopify/types";
 import { ProductGallery } from "./product-gallery";
 
@@ -53,6 +54,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const images = productImages(product.images, product.featuredImage);
+  const { firstWord, remainingTitle } = splitProductTitle(product.title);
   const visibleVariants = product.variants.filter(
     (variant) => variant.title !== "Default Title",
   );
@@ -135,7 +137,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               lh={1}
               lts="-0.035em"
             >
-              {product.title}
+              <Box component="span" display="block">
+                {firstWord}
+              </Box>
+              {remainingTitle && (
+                <Box component="span" display="block">
+                  {remainingTitle}
+                </Box>
+              )}
             </Title>
 
             <Text fz="lg" fw={600} mt={24}>
