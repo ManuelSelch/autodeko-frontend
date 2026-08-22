@@ -1,10 +1,15 @@
+import { MantineProvider } from "@mantine/core";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import Footer from "./index";
 
 describe("Footer", () => {
   it("shows only the logo and accessible Instagram and contact links", () => {
-    const markup = renderToStaticMarkup(<Footer />);
+    const markup = renderToStaticMarkup(
+      <MantineProvider>
+        <Footer />
+      </MantineProvider>,
+    );
 
     expect(markup).toContain('alt="Auto Deko Handmade"');
     expect(markup).toContain('aria-label="Auto Deko auf Instagram"');
