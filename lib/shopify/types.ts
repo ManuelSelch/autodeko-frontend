@@ -27,3 +27,7 @@ export interface Product {
   price: Money;
   variants: ProductVariant[];
 }
+
+export interface ProductDetails extends Product {
+  images: ProductImage[];
+}

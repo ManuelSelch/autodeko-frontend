@@ -1,4 +1,8 @@
-import { getShopifyStorefront, type Product } from "./shopify";
+import {
+  getShopifyStorefront,
+  type Product,
+  type ProductDetails,
+} from "./shopify";
 
 class API {
   async getProducts(): Promise<Product[]> {
@@ -7,6 +11,15 @@ class API {
     } catch (error) {
       console.error("Could not load products from Shopify", error);
       return [];
+    }
+  }
+
+  async getProduct(handle: string): Promise<ProductDetails | null> {
+    try {
+      return await getShopifyStorefront().getProduct(handle);
+    } catch (error) {
+      console.error(`Could not load Shopify product: ${handle}`, error);
+      return null;
     }
   }
 }

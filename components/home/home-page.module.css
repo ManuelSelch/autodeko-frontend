@@ -196,6 +196,17 @@
   gap: clamp(1rem, 2.5vw, 2.5rem);
 }
 
+.productLink {
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.productLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 5px;
+}
+
 .productCard {
   min-width: 0;
 }

@@ -19,4 +19,10 @@ export function getShopifyStorefront() {
   });
 }
 
-export type { Money, Product, ProductImage, ProductVariant } from "./types";
+export type {
+  Money,
+  Product,
+  ProductDetails,
+  ProductImage,
+  ProductVariant,
+} from "./types";

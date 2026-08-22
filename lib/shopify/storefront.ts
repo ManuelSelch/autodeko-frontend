@@ -1,4 +1,10 @@
-import type { Money, Product, ProductImage, ProductVariant } from "./types";
+import type {
+  Money,
+  Product,
+  ProductDetails,
+  ProductImage,
+  ProductVariant,
+} from "./types";
 
 export interface ShopifyConfig {
   storeDomain: string;
@@ -26,8 +32,16 @@ interface ShopifyProduct {
   variants: { nodes: ProductVariant[] };
 }
 
+interface ShopifyProductDetails extends ShopifyProduct {
+  images: { nodes: ProductImage[] };
+}
+
 interface ProductsData {
   products: { nodes: ShopifyProduct[] };
+}
+
+interface ProductData {
+  product: ShopifyProductDetails | null;
 }
 
 const PRODUCTS_QUERY = `#graphql
@@ -66,6 +80,62 @@ const PRODUCTS_QUERY = `#graphql
     }
   }
 `;
+
+const PRODUCT_QUERY = `#graphql
+  query Product($handle: String!) {
+    product(handle: $handle) {
+      id
+      handle
+      title
+      description
+      availableForSale
+      featuredImage {
+        url
+        altText
+        width
+        height
+      }
+      images(first: 12) {
+        nodes {
+          url
+          altText
+          width
+          height
+        }
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      variants(first: 20) {
+        nodes {
+          id
+          title
+          availableForSale
+          price {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }
+`;
+
+function mapProduct(product: ShopifyProduct): Product {
+  return {
+    id: product.id,
+    handle: product.handle,
+    title: product.title,
+    description: product.description,
+    availableForSale: product.availableForSale,
+    featuredImage: product.featuredImage,
+    price: product.priceRange.minVariantPrice,
+    variants: product.variants.nodes,
+  };
+}
 
 function normalizeStoreDomain(domain: string): string {
   return domain.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -112,16 +182,20 @@ export function createStorefrontClient(
     async getProducts(first = 12): Promise<Product[]> {
       const data = await query<ProductsData>(PRODUCTS_QUERY, { first });
 
-      return data.products.nodes.map((product) => ({
-        id: product.id,
-        handle: product.handle,
-        title: product.title,
-        description: product.description,
-        availableForSale: product.availableForSale,
-        featuredImage: product.featuredImage,
-        price: product.priceRange.minVariantPrice,
-        variants: product.variants.nodes,
-      }));
+      return data.products.nodes.map(mapProduct);
+    },
+
+    async getProduct(handle: string): Promise<ProductDetails | null> {
+      const data = await query<ProductData>(PRODUCT_QUERY, { handle });
+
+      if (!data.product) {
+        return null;
+      }
+
+      return {
+        ...mapProduct(data.product),
+        images: data.product.images.nodes,
+      };
     },
   };
 }

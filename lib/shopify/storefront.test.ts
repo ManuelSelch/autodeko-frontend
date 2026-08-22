@@ -89,6 +89,63 @@ describe("Shopify Storefront client", () => {
     ]);
   });
 
+  it("loads a product detail by handle", async () => {
+    const fetcher = vi.fn<typeof fetch>(async () =>
+      Response.json({
+        data: {
+          product: {
+            id: "gid://shopify/Product/1",
+            handle: "motor-lampe",
+            title: "Motor-Lampe",
+            description: "Handgefertigte Lampe",
+            availableForSale: true,
+            featuredImage: null,
+            images: {
+              nodes: [
+                {
+                  url: "https://cdn.shopify.com/lamp-detail.jpg",
+                  altText: "Motor-Lampe im Detail",
+                  width: 1400,
+                  height: 1600,
+                },
+              ],
+            },
+            priceRange: {
+              minVariantPrice: { amount: "129.90", currencyCode: "EUR" },
+            },
+            variants: { nodes: [] },
+          },
+        },
+      }),
+    );
+
+    const client = createStorefrontClient(config, fetcher);
+    const product = await client.getProduct("motor-lampe");
+
+    const requestOptions = fetcher.mock.calls[0]?.[1];
+    expect(JSON.parse(requestOptions?.body as string).variables).toEqual({
+      handle: "motor-lampe",
+    });
+    expect(product?.images).toEqual([
+      {
+        url: "https://cdn.shopify.com/lamp-detail.jpg",
+        altText: "Motor-Lampe im Detail",
+        width: 1400,
+        height: 1600,
+      },
+    ]);
+  });
+
+  it("returns null when Shopify has no product for the handle", async () => {
+    const fetcher = vi.fn<typeof fetch>(async () =>
+      Response.json({ data: { product: null } }),
+    );
+
+    const client = createStorefrontClient(config, fetcher);
+
+    await expect(client.getProduct("missing-product")).resolves.toBeNull();
+  });
+
   it("reports Storefront GraphQL errors", async () => {
     const fetcher = vi.fn<typeof fetch>(async () =>
       Response.json({ errors: [{ message: "Access denied" }] }),

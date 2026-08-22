@@ -1,4 +1,5 @@
 import { Image } from "@mantine/core";
+import Link from "next/link";
 import autoFass from "@/img/auto-fass.png";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
@@ -25,24 +26,30 @@ export default function ProductShowcase({ products }: { products: Product[] }) {
       ) : (
         <div className={styles.productGrid}>
           {products.map((product) => (
-            <article className={styles.productCard} key={product.id}>
-              <div className={styles.productImageWrap}>
-                <Image
-                  className={styles.productImage}
-                  src={product.featuredImage?.url ?? autoFass.src}
-                  alt={product.featuredImage?.altText ?? product.title}
-                  fit="contain"
-                  loading="lazy"
-                />
-                {!product.availableForSale && (
-                  <span className={styles.productStatus}>Ausverkauft</span>
-                )}
-              </div>
-              <div className={styles.productInfo}>
-                <h3 className={styles.productName}>{product.title}</h3>
-                <p className={styles.productPrice}>{formatMoney(product.price)}</p>
-              </div>
-            </article>
+            <Link
+              className={styles.productLink}
+              href={`/products/${product.handle}`}
+              key={product.id}
+            >
+              <article className={styles.productCard}>
+                <div className={styles.productImageWrap}>
+                  <Image
+                    className={styles.productImage}
+                    src={product.featuredImage?.url ?? autoFass.src}
+                    alt={product.featuredImage?.altText ?? product.title}
+                    fit="contain"
+                    loading="lazy"
+                  />
+                  {!product.availableForSale && (
+                    <span className={styles.productStatus}>Ausverkauft</span>
+                  )}
+                </div>
+                <div className={styles.productInfo}>
+                  <h3 className={styles.productName}>{product.title}</h3>
+                  <p className={styles.productPrice}>{formatMoney(product.price)}</p>
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       )}
