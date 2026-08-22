@@ -34,8 +34,8 @@ const theme = createTheme({
 });
 
 export const metadata: Metadata = {
-  title: "Auto Deko | Designobjekte aus echten Autoteilen",
-  description: "Handgefertigte Einzelstücke und Wohnobjekte aus echten Autoteilen.",
+  title: "Auto Deko",
+  description: "Handgefertigte Einzelstücke aus echten Autoteilen.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
