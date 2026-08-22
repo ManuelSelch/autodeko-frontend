@@ -9,7 +9,7 @@ const imageClass =
   "max-h-[560px] w-[min(66%,510px)] object-contain drop-shadow-2xl";
 const copyClass =
   "flex min-h-[480px] flex-col items-start justify-center bg-paper p-[clamp(3rem,8vw,9rem)]";
-const titleClass = `${displayTitleClass} max-w-[9ch] text-[clamp(2.5rem,4.5vw,4.75rem)] leading-[0.98]`;
+const titleClass = `${displayTitleClass} max-w-[9ch] text-[clamp(2.1rem,3.2vw,3rem)] leading-[1.05]`;
 
 export function StorySections() {
   return (

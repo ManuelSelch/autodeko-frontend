@@ -10,7 +10,7 @@ export function BrandStatement() {
       <p className={eyebrowClass}>Unser Antrieb</p>
       <h2
         id="statement-title"
-        className={`${displayTitleClass} max-w-[15ch] text-[clamp(2.6rem,4.8vw,5.25rem)] leading-none`}
+        className={`${displayTitleClass} max-w-[15ch] text-[clamp(2.25rem,3.5vw,3.5rem)] leading-[1.05]`}
       >
         Wir geben ausgedienten Autoteilen ein zweites Leben –
         <span className="text-accent"> als Objekte mit Geschichte.</span>

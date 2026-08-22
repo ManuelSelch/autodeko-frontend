@@ -250,7 +250,7 @@ Shared visual values should be represented as theme/CSS tokens rather than repea
 ## 14. Open questions
 
 1. Should the header overlay the hero, or should it remain a separate white/charcoal bar?
-2. Which exact Auto Deko logo/wordmark should be used? The current `logo.jpeg` may not work over photography.
+2. Confirm whether `img/logo.png` should also be prepared as a transparent, tightly cropped variant for use over photography.
 3. Are suitable hero and workshop photographs available, or should temporary placeholders be prepared?
 4. Should clicking products initially open the Shopify-hosted product page, or wait for native product detail pages?
 5. Which email address and social profiles should the contact section use?

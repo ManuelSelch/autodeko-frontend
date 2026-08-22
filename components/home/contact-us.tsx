@@ -11,7 +11,7 @@ export function ContactUs() {
         <p className={eyebrowClass}>Deine Idee. Unser nächstes Unikat.</p>
         <h2
           id="contact-title"
-          className={`${displayTitleClass} max-w-[11ch] text-[clamp(2.75rem,5vw,5.25rem)] leading-[0.98]`}
+          className={`${displayTitleClass} max-w-[11ch] text-[clamp(2.25rem,3.5vw,3.25rem)] leading-[1.05]`}
         >
           Du hast ein besonderes Teil?
         </h2>

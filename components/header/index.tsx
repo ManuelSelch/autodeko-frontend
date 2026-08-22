@@ -1,3 +1,6 @@
+import { Image } from "@mantine/core";
+import logo from "@/img/logo.png";
+
 const navigation = [
   { href: "#startseite", label: "Startseite" },
   { href: "#produkte", label: "Produkte" },
@@ -13,11 +16,16 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-md">
       <div className="mx-auto grid min-h-[82px] max-w-[100rem] grid-cols-[1fr_auto] items-center gap-8 px-[clamp(1.25rem,4vw,4rem)] md:grid-cols-[1fr_auto_1fr]">
         <a
-          className="w-max font-display text-xl leading-[0.9] font-bold tracking-[0.03em] text-ink uppercase no-underline"
+          className="inline-flex w-max items-center no-underline"
           href="#startseite"
           aria-label="Auto Deko Startseite"
         >
-          Auto <span className="block text-accent">Deko</span>
+          <Image
+            className="h-16 w-16 object-contain"
+            src={logo.src}
+            alt="Auto Deko Handmade"
+            fit="contain"
+          />
         </a>
 
         <nav className="hidden items-center gap-[clamp(1.5rem,3vw,3.25rem)] md:flex" aria-label="Hauptnavigation">

@@ -12,11 +12,11 @@ export function HeroSection() {
         <p className={eyebrowClass}>Handgefertigte Unikate aus Bayern</p>
         <h1
           id="hero-title"
-          className={`${displayTitleClass} max-w-[9ch] text-[clamp(3rem,6vw,6.4rem)] leading-[0.92] text-ink`}
+          className={`${displayTitleClass} max-w-[9ch] text-[clamp(2.5rem,4vw,4rem)] leading-[1.02] text-ink`}
         >
           Aus Autoteilen <span className="block text-accent">wird Charakter.</span>
         </h1>
-        <p className="mt-8 max-w-[34rem] text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.65] text-muted">
+        <p className="mt-8 max-w-[34rem] text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-muted">
           Wir verwandeln echte Fahrzeugteile in außergewöhnliche Wohnobjekte –
           mit sichtbarer Geschichte und von Hand gefertigt.
         </p>
