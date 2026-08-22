@@ -1,74 +1,139 @@
-import { Image } from "@mantine/core";
-import Link from "next/link";
+import {
+  Anchor,
+  AspectRatio,
+  Box,
+  Center,
+  Grid,
+  GridCol,
+  Group,
+  Image,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import autoFass from "@/img/auto-fass.png";
 import { curateProducts } from "@/lib/shopify/curate-products";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
-import { displayTitleClass } from "./tailwind-styles";
 
 export default function ProductShowcase({ products }: { products: Product[] }) {
   const featuredProducts = curateProducts(products);
 
   return (
-    <section
-      className="bg-paper px-[clamp(1.25rem,5vw,5.5rem)] py-[clamp(5rem,9vw,9rem)]"
+    <Box
+      component="section"
       id="produkte"
       aria-labelledby="products-title"
+      bg="var(--color-paper)"
+      px="clamp(1.25rem, 5vw, 5.5rem)"
+      py="clamp(5rem, 9vw, 9rem)"
     >
-      <header className="mx-auto mb-[clamp(2.5rem,5vw,4.5rem)] flex max-w-[92rem] flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-        <h2
-          id="products-title"
-          className={`${displayTitleClass} max-w-[12ch] text-[clamp(2.25rem,3.5vw,3.25rem)] leading-[1.05]`}
-        >
-          Ausgewählte Einzelstücke
-        </h2>
-        <p className="m-0 max-w-[31rem] leading-[1.7] text-muted">
-          Echte Fahrzeugteile, in Handarbeit neu interpretiert. Kein Objekt gleicht
-          dem anderen – und genau das ist der Punkt.
-        </p>
-      </header>
+      <Box maw="92rem" mx="auto">
+        <Box component="header" mb="clamp(2.5rem, 5vw, 4.5rem)">
+          <Grid gutter={32} align="flex-end">
+            <GridCol span={{ base: 12, sm: 7 }}>
+              <Title
+                id="products-title"
+                order={2}
+                ff="var(--font-display)"
+                fz="clamp(2.25rem, 3.5vw, 3.25rem)"
+                fw={500}
+                lh={1.05}
+                lts="-0.035em"
+                maw="12ch"
+                tt="uppercase"
+              >
+                Ausgewählte Einzelstücke
+              </Title>
+            </GridCol>
 
-      {featuredProducts.length === 0 ? (
-        <div className="mx-auto max-w-[92rem] border border-line px-6 py-16 text-center">
-          <strong>Neue Einzelstücke sind in Arbeit.</strong>
-          <p className="mt-2 text-muted">
-            Schau bald wieder vorbei – die nächsten Produkte entstehen bereits.
-          </p>
-        </div>
-      ) : (
-        <div className="mx-auto grid max-w-[92rem] grid-cols-1 gap-[clamp(1rem,2.5vw,2.5rem)] md:grid-cols-2 xl:grid-cols-4">
-          {featuredProducts.map((product) => (
-            <Link
-              className="group min-w-0 text-inherit no-underline outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
-              href={`/products/${product.handle}`}
-              key={product.id}
-            >
-              <article className="min-w-0">
-                <div className="relative grid aspect-[4/5] place-items-center overflow-hidden bg-canvas">
-                  <Image
-                    className="h-[82%] w-[82%] object-contain transition-transform duration-300 group-hover:scale-[1.035] motion-reduce:transition-none"
-                    src={product.featuredImage?.url ?? autoFass.src}
-                    alt={product.featuredImage?.altText ?? product.title}
-                    fit="contain"
-                    loading="lazy"
-                  />
-                  {!product.availableForSale && (
-                    <span className="absolute top-3.5 left-3.5 bg-ink px-3 py-2 text-[0.68rem] font-bold tracking-[0.07em] text-paper uppercase">
-                      Ausverkauft
-                    </span>
-                  )}
-                </div>
-                <div className="flex justify-between gap-4 pt-4">
-                  <h3 className="m-0 text-[0.93rem] font-semibold">{product.title}</h3>
-                  <p className="m-0 text-[0.93rem] whitespace-nowrap text-muted">
-                    {formatMoney(product.price)}
-                  </p>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
-      )}
-    </section>
+            <GridCol span={{ base: 12, sm: 5 }}>
+              <Text c="var(--color-muted)" lh={1.7} maw="31rem" ml={{ base: 0, sm: "auto" }}>
+                Echte Fahrzeugteile, in Handarbeit neu interpretiert. Kein Objekt
+                gleicht dem anderen – und genau das ist der Punkt.
+              </Text>
+            </GridCol>
+          </Grid>
+        </Box>
+
+        {featuredProducts.length === 0 ? (
+          <Stack
+            align="center"
+            gap={8}
+            bd="1px solid var(--color-line)"
+            px={24}
+            py={64}
+            ta="center"
+          >
+            <Text fw={700}>Neue Einzelstücke sind in Arbeit.</Text>
+            <Text c="var(--color-muted)">
+              Schau bald wieder vorbei – die nächsten Produkte entstehen bereits.
+            </Text>
+          </Stack>
+        ) : (
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, lg: 4 }}
+            spacing="clamp(1rem, 2.5vw, 2.5rem)"
+          >
+            {featuredProducts.map((product) => (
+              <Anchor
+                href={`/products/${product.handle}`}
+                key={product.id}
+                c="inherit"
+                display="block"
+                underline="never"
+              >
+                <Box component="article" miw={0}>
+                  <AspectRatio ratio={4 / 5} bg="var(--color-canvas)">
+                    <Box pos="relative" style={{ overflow: "hidden" }}>
+                      <Center h="100%">
+                        <Image
+                          src={product.featuredImage?.url ?? autoFass.src}
+                          alt={product.featuredImage?.altText ?? product.title}
+                          fit="contain"
+                          h="82%"
+                          w="82%"
+                          loading="lazy"
+                        />
+                      </Center>
+
+                      {!product.availableForSale && (
+                        <Box
+                          pos="absolute"
+                          top={14}
+                          left={14}
+                          bg="var(--color-ink)"
+                          c="var(--color-paper)"
+                          px={12}
+                          py={8}
+                        >
+                          <Text fz="0.68rem" fw={700} lts="0.07em" tt="uppercase">
+                            Ausverkauft
+                          </Text>
+                        </Box>
+                      )}
+                    </Box>
+                  </AspectRatio>
+
+                  <Group justify="space-between" align="flex-start" gap={16} pt={16} wrap="nowrap">
+                    <Text component="h3" fz="0.93rem" fw={600}>
+                      {product.title}
+                    </Text>
+                    <Text
+                      c="var(--color-muted)"
+                      fz="0.93rem"
+                      style={{ whiteSpace: "nowrap" }}
+                    >
+                      {formatMoney(product.price)}
+                    </Text>
+                  </Group>
+                </Box>
+              </Anchor>
+            ))}
+          </SimpleGrid>
+        )}
+      </Box>
+    </Box>
   );
 }
