@@ -67,7 +67,7 @@ export function StorySections() {
     <Box id="handwerk">
       <Box component="section" aria-labelledby="story-bestseller">
         <Grid gutter={0} align="stretch">
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 6, sm: 6 }}>
             <Box h="100%" mih={{ base: 280, sm: 540 }} style={{ overflow: "hidden" }}>
               <Image
                 src={bestseller.src}
@@ -79,7 +79,7 @@ export function StorySections() {
             </Box>
           </GridCol>
 
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 6, sm: 6 }}>
             <StoryCopy
               eyebrow="Unser Bestseller"
               id="story-bestseller"
@@ -95,7 +95,7 @@ export function StorySections() {
 
       <Box component="section" aria-labelledby="story-craft">
         <Grid gutter={0} align="stretch">
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
+          <GridCol span={{ base: 6, sm: 6 }} order={{ base: 2, sm: 2 }}>
             <Center
               h="100%"
               mih={{ base: 280, sm: 540 }}
@@ -113,7 +113,7 @@ export function StorySections() {
             </Center>
           </GridCol>
 
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
+          <GridCol span={{ base: 6, sm: 6 }} order={{ base: 1, sm: 1 }}>
             <StoryCopy
               eyebrow="Echte Handarbeit"
               id="story-craft"
