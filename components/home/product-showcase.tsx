@@ -16,6 +16,78 @@ import { curateProducts } from "@/lib/shopify/curate-products";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
 
+function ProductCard({ product }: { product: Product }) {
+  return (
+    <Anchor
+      href={`/products/${product.handle}`}
+      c="inherit"
+      display="block"
+      underline="never"
+    >
+      <Box component="article" miw={0}>
+        <AspectRatio ratio={4 / 5}>
+          <Box pos="relative" style={{ overflow: "hidden" }}>
+            <Image
+              src={product.featuredImage?.url ?? autoFass.src}
+              alt={product.featuredImage?.altText ?? product.title}
+              fit="contain"
+              h="100%"
+              w="100%"
+              loading="lazy"
+            />
+
+            {!product.availableForSale && (
+              <Box
+                pos="absolute"
+                top={{ base: 4, sm: 14 }}
+                left={{ base: 4, sm: 14 }}
+                bg="var(--color-ink)"
+                c="var(--color-paper)"
+                px={{ base: 4, sm: 12 }}
+                py={{ base: 3, sm: 8 }}
+              >
+                <Text
+                  fz={{ base: "0.5rem", sm: "0.68rem" }}
+                  fw={700}
+                  lts="0.07em"
+                  tt="uppercase"
+                >
+                  Ausverkauft
+                </Text>
+              </Box>
+            )}
+          </Box>
+        </AspectRatio>
+
+        <Stack hiddenFrom="sm" gap={2} pt={8}>
+          <Text component="h3" fz="0.65rem" fw={600} lineClamp={2}>
+            {product.title}
+          </Text>
+          <Text c="var(--color-muted)" fz="0.65rem" style={{ whiteSpace: "nowrap" }}>
+            {formatMoney(product.price)}
+          </Text>
+        </Stack>
+
+        <Group
+          visibleFrom="sm"
+          justify="space-between"
+          align="flex-start"
+          gap={16}
+          pt={16}
+          wrap="nowrap"
+        >
+          <Text component="h3" fz="0.93rem" fw={600}>
+            {product.title}
+          </Text>
+          <Text c="var(--color-muted)" fz="0.93rem" style={{ whiteSpace: "nowrap" }}>
+            {formatMoney(product.price)}
+          </Text>
+        </Group>
+      </Box>
+    </Anchor>
+  );
+}
+
 export default function ProductShowcase({ products }: { products: Product[] }) {
   const featuredProducts = curateProducts(products);
 
@@ -72,61 +144,11 @@ export default function ProductShowcase({ products }: { products: Product[] }) {
           </Stack>
         ) : (
           <SimpleGrid
-            cols={{ base: 1, sm: 2, lg: 4 }}
-            spacing="clamp(1rem, 2.5vw, 2.5rem)"
+            cols={4}
+            spacing={{ base: 8, sm: "clamp(1rem, 2.5vw, 2.5rem)" }}
           >
             {featuredProducts.map((product) => (
-              <Anchor
-                href={`/products/${product.handle}`}
-                key={product.id}
-                c="inherit"
-                display="block"
-                underline="never"
-              >
-                <Box component="article" miw={0}>
-                  <AspectRatio ratio={4 / 5}>
-                    <Box pos="relative" style={{ overflow: "hidden" }}>
-                      <Image
-                        src={product.featuredImage?.url ?? autoFass.src}
-                        alt={product.featuredImage?.altText ?? product.title}
-                        fit="contain"
-                        h="100%"
-                        w="100%"
-                        loading="lazy"
-                      />
-
-                      {!product.availableForSale && (
-                        <Box
-                          pos="absolute"
-                          top={14}
-                          left={14}
-                          bg="var(--color-ink)"
-                          c="var(--color-paper)"
-                          px={12}
-                          py={8}
-                        >
-                          <Text fz="0.68rem" fw={700} lts="0.07em" tt="uppercase">
-                            Ausverkauft
-                          </Text>
-                        </Box>
-                      )}
-                    </Box>
-                  </AspectRatio>
-
-                  <Group justify="space-between" align="flex-start" gap={16} pt={16} wrap="nowrap">
-                    <Text component="h3" fz="0.93rem" fw={600}>
-                      {product.title}
-                    </Text>
-                    <Text
-                      c="var(--color-muted)"
-                      fz="0.93rem"
-                      style={{ whiteSpace: "nowrap" }}
-                    >
-                      {formatMoney(product.price)}
-                    </Text>
-                  </Group>
-                </Box>
-              </Anchor>
+              <ProductCard product={product} key={product.id} />
             ))}
           </SimpleGrid>
         )}
