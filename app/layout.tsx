@@ -28,7 +28,8 @@ const theme = createTheme({
   },
   fontFamily: "Arial, Helvetica, sans-serif",
   headings: {
-    fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
+    fontFamily: "Arial, Helvetica, sans-serif",
+    fontWeight: "600",
   },
 });
 

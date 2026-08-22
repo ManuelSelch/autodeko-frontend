@@ -23,8 +23,8 @@
   margin: 0 0 1.5rem;
   color: var(--color-muted);
   font-size: 0.78rem;
-  font-weight: 750;
-  letter-spacing: 0.16em;
+  font-weight: 650;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -41,17 +41,17 @@
 .storyTitle,
 .contactTitle {
   margin: 0;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.04em;
 }
 
 .heroTitle {
   max-width: 9ch;
   color: var(--color-ink);
-  font-size: clamp(4.25rem, 8.5vw, 9.5rem);
-  line-height: 0.84;
+  font-size: clamp(3rem, 6vw, 6.4rem);
+  line-height: 0.92;
 }
 
 .heroTitle span {
@@ -80,8 +80,8 @@
   color: var(--color-paper);
   background: var(--color-ink);
   font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 160ms ease, color 160ms ease;
@@ -127,9 +127,9 @@
   right: clamp(1.25rem, 3vw, 3rem);
   bottom: clamp(1.25rem, 3vw, 3rem);
   color: rgba(25, 25, 23, 0.55);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -146,9 +146,9 @@
   width: max-content;
   gap: 2.25rem;
   padding-inline: 1.5rem;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -177,8 +177,8 @@
 
 .sectionTitle {
   max-width: 10ch;
-  font-size: clamp(3.5rem, 7vw, 7.75rem);
-  line-height: 0.9;
+  font-size: clamp(2.75rem, 5vw, 5rem);
+  line-height: 0.98;
 }
 
 .sectionIntro {
@@ -239,8 +239,8 @@
   color: var(--color-paper);
   background: var(--color-ink);
   font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
@@ -258,7 +258,7 @@
 }
 
 .productName {
-  font-weight: 750;
+  font-weight: 650;
 }
 
 .productPrice {
@@ -288,8 +288,8 @@
 
 .statementTitle {
   max-width: 15ch;
-  font-size: clamp(3.5rem, 7vw, 8.5rem);
-  line-height: 0.94;
+  font-size: clamp(2.6rem, 4.8vw, 5.25rem);
+  line-height: 1;
 }
 
 .statementAccent {
@@ -349,8 +349,8 @@
 
 .storyTitle {
   max-width: 9ch;
-  font-size: clamp(3.25rem, 6vw, 7rem);
-  line-height: 0.9;
+  font-size: clamp(2.5rem, 4.5vw, 4.75rem);
+  line-height: 0.98;
 }
 
 .storyText {
@@ -372,8 +372,8 @@
 
 .contactTitle {
   max-width: 11ch;
-  font-size: clamp(3.5rem, 7vw, 8rem);
-  line-height: 0.9;
+  font-size: clamp(2.75rem, 5vw, 5.25rem);
+  line-height: 0.98;
 }
 
 .contactAside {
