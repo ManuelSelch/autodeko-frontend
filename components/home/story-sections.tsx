@@ -82,6 +82,7 @@ export function StorySections() {
                 alt="Uhr aus Bremsscheibe und rotem Audi-RS-Bremssattel vor einem roten Sportwagen"
                 fit="cover"
                 h="100%"
+                style={{ objectPosition: "50% 30%" }}
               />
             </Box>
           </GridCol>
@@ -114,7 +115,10 @@ export function StorySections() {
                 alt="Handgefertigte Uhr aus einer Porsche-Bremsscheibe"
                 fit="cover"
                 h="100%"
-                style={{ filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.2))" }}
+                style={{
+                  filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.2))",
+                  objectPosition: "50% 30%",
+                }}
               />
             </Center>
           </GridCol>
