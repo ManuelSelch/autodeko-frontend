@@ -6,7 +6,7 @@ import { displayTitleClass } from "./tailwind-styles";
 // Desktop hero controls. Change these two values directly:
 // - 1 = no extra zoom, 1.1 = 10% zoom, 1.25 = 25% zoom
 // - "50% 100%" = horizontal center and vertical bottom
-const DESKTOP_HERO_ZOOM = 1.08;
+const DESKTOP_HERO_ZOOM = 1.0;
 const DESKTOP_HERO_POSITION = "50% 100%";
 
 const desktopFrameStyle: CSSProperties = {
@@ -22,13 +22,13 @@ const desktopImageStyle: CSSProperties = {
 export function HeroSection() {
   return (
     <section
-      className="relative flex aspect-[3/4] min-h-0 items-end overflow-hidden bg-ink md:aspect-auto md:min-h-[calc(100svh-82px)]"
+      className="relative flex h-[calc(100svh-82px)] min-h-0 items-end overflow-hidden bg-ink md:h-[100vh]"
       aria-labelledby="hero-title"
     >
       {/* Separate mobile and desktop layers make their crop settings independent. */}
       <div className="absolute inset-0 md:hidden">
         <Image
-          style={{ objectFit: "cover", objectPosition: "50% 50%" }}
+          style={{ objectFit: "contain", objectPosition: "50% 50%" }}
           src={hero}
           alt="Automotive-Szene mit Sportwagen und einer Uhr aus einer Bremsscheibe"
           fill
