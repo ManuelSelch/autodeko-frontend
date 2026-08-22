@@ -6,6 +6,7 @@ import {
   GridCol,
   Group,
   Image,
+  ScrollArea,
   SimpleGrid,
   Stack,
   Text,
@@ -39,15 +40,15 @@ function ProductCard({ product }: { product: Product }) {
             {!product.availableForSale && (
               <Box
                 pos="absolute"
-                top={{ base: 4, sm: 14 }}
-                left={{ base: 4, sm: 14 }}
+                top={{ base: 10, sm: 14 }}
+                left={{ base: 10, sm: 14 }}
                 bg="var(--color-ink)"
                 c="var(--color-paper)"
-                px={{ base: 4, sm: 12 }}
-                py={{ base: 3, sm: 8 }}
+                px={{ base: 10, sm: 12 }}
+                py={{ base: 6, sm: 8 }}
               >
                 <Text
-                  fz={{ base: "0.5rem", sm: "0.68rem" }}
+                  fz={{ base: "0.62rem", sm: "0.68rem" }}
                   fw={700}
                   lts="0.07em"
                   tt="uppercase"
@@ -59,11 +60,11 @@ function ProductCard({ product }: { product: Product }) {
           </Box>
         </AspectRatio>
 
-        <Stack hiddenFrom="sm" gap={2} pt={8}>
-          <Text component="h3" fz="0.65rem" fw={600} lineClamp={2}>
+        <Stack hiddenFrom="sm" gap={4} pt={14}>
+          <Text component="h3" fz="0.9rem" fw={600} lineClamp={2}>
             {product.title}
           </Text>
-          <Text c="var(--color-muted)" fz="0.65rem" style={{ whiteSpace: "nowrap" }}>
+          <Text c="var(--color-muted)" fz="0.9rem" style={{ whiteSpace: "nowrap" }}>
             {formatMoney(product.price)}
           </Text>
         </Stack>
@@ -143,14 +144,41 @@ export default function ProductShowcase({ products }: { products: Product[] }) {
             </Text>
           </Stack>
         ) : (
-          <SimpleGrid
-            cols={4}
-            spacing={{ base: 8, sm: "clamp(1rem, 2.5vw, 2.5rem)" }}
-          >
-            {featuredProducts.map((product) => (
-              <ProductCard product={product} key={product.id} />
-            ))}
-          </SimpleGrid>
+          <>
+            <ScrollArea
+              hiddenFrom="sm"
+              type="never"
+              scrollbars="x"
+              viewportProps={{
+                "aria-label": "Produkte horizontal durchscrollen",
+                tabIndex: 0,
+                style: { scrollSnapType: "x mandatory" },
+              }}
+            >
+              <Group gap={16} wrap="nowrap" align="flex-start" pb={12}>
+                {featuredProducts.map((product) => (
+                  <Box
+                    key={product.id}
+                    w="calc(40vw - 1.8rem)"
+                    miw="calc(40vw - 1.8rem)"
+                    style={{ scrollSnapAlign: "start" }}
+                  >
+                    <ProductCard product={product} />
+                  </Box>
+                ))}
+              </Group>
+            </ScrollArea>
+
+            <SimpleGrid
+              visibleFrom="sm"
+              cols={4}
+              spacing="clamp(1rem, 2.5vw, 2.5rem)"
+            >
+              {featuredProducts.map((product) => (
+                <ProductCard product={product} key={product.id} />
+              ))}
+            </SimpleGrid>
+          </>
         )}
       </Box>
     </Box>
