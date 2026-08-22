@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import { Image } from "@mantine/core";
-import Link from "next/link";
+import {
+  Anchor,
+  AspectRatio,
+  Box,
+  Button,
+  Center,
+  Divider,
+  Grid,
+  GridCol,
+  Group,
+  Image,
+  Text,
+  Title,
+} from "@mantine/core";
 import { notFound } from "next/navigation";
 import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { ProductImage } from "@/lib/shopify/types";
-import {
-  productButtonClass,
-  productEyebrowClass,
-  productPageClass,
-  productTitleClass,
-} from "./tailwind-styles";
 
 interface ProductPageProps {
   params: Promise<{ handle: string }>;
@@ -53,105 +59,223 @@ export default async function ProductPage({ params }: ProductPageProps) {
   );
 
   return (
-    <main className={productPageClass}>
-      <nav
-        className="mx-auto mb-[clamp(2rem,4vw,4rem)] flex max-w-[92rem] items-center gap-3 text-xs font-semibold tracking-[0.07em] text-muted uppercase"
+    <Box
+      component="main"
+      mih="100vh"
+      bg="var(--color-paper)"
+      px="clamp(1.25rem, 5vw, 5rem)"
+      pt="clamp(2rem, 5vw, 5rem)"
+      pb="clamp(5rem, 9vw, 9rem)"
+    >
+      <Group
+        component="nav"
         aria-label="Brotkrümelnavigation"
+        gap="sm"
+        maw="92rem"
+        mx="auto"
+        mb="clamp(2rem, 4vw, 4rem)"
       >
-        <Link className="text-ink no-underline hover:underline hover:underline-offset-4" href="/#produkte">
-          Produkte
-        </Link>
-        <span aria-hidden="true">/</span>
-        <span>{product.title}</span>
-      </nav>
-
-      <div className="mx-auto grid max-w-[92rem] grid-cols-1 items-start gap-[clamp(3rem,7vw,8rem)] lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-        <div
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-          aria-label={`Produktbilder von ${product.title}`}
+        <Anchor
+          component="a"
+          href="/#produkte"
+          c="var(--color-ink)"
+          fz="xs"
+          fw={600}
+          lts="0.07em"
+          tt="uppercase"
+          underline="hover"
         >
-          {images.length > 0 ? (
-            images.map((image, index) => (
-              <div
-                className={`grid place-items-center overflow-hidden bg-canvas ${
-                  index === 0
-                    ? "aspect-[4/5] sm:col-span-full sm:aspect-square"
-                    : "aspect-[4/5]"
-                }`}
-                key={`${image.url}-${index}`}
-              >
-                <Image
-                  className="h-[84%] w-[84%] object-contain"
-                  src={image.url}
-                  alt={image.altText ?? `${product.title}, Ansicht ${index + 1}`}
-                  fit="contain"
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
-              </div>
-            ))
-          ) : (
-            <div className="grid aspect-[4/5] place-items-center overflow-hidden bg-canvas sm:col-span-full sm:aspect-square">
-              <Image
-                className="h-[84%] w-[84%] object-contain"
-                src={autoFass.src}
-                alt={product.title}
-                fit="contain"
-              />
-            </div>
-          )}
-        </div>
+          Produkte
+        </Anchor>
+        <Text c="var(--color-muted)" fz="xs" aria-hidden="true">
+          /
+        </Text>
+        <Text
+          c="var(--color-muted)"
+          fz="xs"
+          fw={600}
+          lts="0.07em"
+          tt="uppercase"
+        >
+          {product.title}
+        </Text>
+      </Group>
 
-        <section className="lg:sticky lg:top-32" aria-labelledby="product-title">
-          <p className={productEyebrowClass}>Handgefertigtes Einzelstück</p>
-          <h1 className={productTitleClass} id="product-title">{product.title}</h1>
-          <p className="mt-6 text-lg font-semibold">{formatMoney(product.price)}</p>
-          <p
-            className={`mt-4 flex items-center gap-2.5 text-sm font-semibold text-muted before:h-2 before:w-2 before:rounded-full before:content-[''] ${
-              product.availableForSale ? "before:bg-[#458254]" : "before:bg-muted"
-            }`}
+      <Grid gutter="clamp(3rem, 7vw, 8rem)" align="flex-start" maw="92rem" mx="auto">
+        <GridCol span={{ base: 12, md: 7 }}>
+          <Grid gutter={16} aria-label={`Produktbilder von ${product.title}`}>
+            {images.length > 0 ? (
+              images.map((image, index) => (
+                <GridCol
+                  span={index === 0 ? 12 : { base: 12, sm: 6 }}
+                  key={`${image.url}-${index}`}
+                >
+                  <AspectRatio
+                    ratio={index === 0 ? 1 : 4 / 5}
+                    bg="var(--color-canvas)"
+                    style={{ overflow: "hidden" }}
+                  >
+                    <Center>
+                      <Image
+                        src={image.url}
+                        alt={image.altText ?? `${product.title}, Ansicht ${index + 1}`}
+                        fit="contain"
+                        h="84%"
+                        w="84%"
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
+                    </Center>
+                  </AspectRatio>
+                </GridCol>
+              ))
+            ) : (
+              <GridCol span={12}>
+                <AspectRatio ratio={1} bg="var(--color-canvas)" style={{ overflow: "hidden" }}>
+                  <Center>
+                    <Image
+                      src={autoFass.src}
+                      alt={product.title}
+                      fit="contain"
+                      h="84%"
+                      w="84%"
+                    />
+                  </Center>
+                </AspectRatio>
+              </GridCol>
+            )}
+          </Grid>
+        </GridCol>
+
+        <GridCol span={{ base: 12, md: 5 }}>
+          <Box
+            component="section"
+            aria-labelledby="product-title"
+            pos={{ base: "static", md: "sticky" }}
+            top={{ base: 0, md: 128 }}
           >
-            {product.availableForSale ? "Verfügbar" : "Aktuell ausverkauft"}
-          </p>
+            <Text
+              c="var(--color-accent)"
+              fz="xs"
+              fw={600}
+              lts="0.12em"
+              mb={20}
+              tt="uppercase"
+            >
+              Handgefertigtes Einzelstück
+            </Text>
 
-          {product.description && (
-            <p className="mt-8 whitespace-pre-line text-[1.02rem] leading-[1.75] text-muted">
-              {product.description}
-            </p>
-          )}
+            <Title
+              id="product-title"
+              order={1}
+              ff="var(--font-display)"
+              fz="clamp(2.5rem, 4vw, 4rem)"
+              fw={500}
+              lh={1}
+              lts="-0.035em"
+              maw="11ch"
+              tt="uppercase"
+            >
+              {product.title}
+            </Title>
 
-          {visibleVariants.length > 0 && (
-            <div className="mt-8 border-t border-line pt-6">
-              <p className="mb-3 text-[0.68rem] font-semibold tracking-[0.1em] text-muted uppercase">
-                Ausführungen
-              </p>
-              <ul className="m-0 flex list-none flex-wrap gap-2.5 p-0">
-                {visibleVariants.map((variant) => (
-                  <li className="border border-line px-3 py-2.5 text-sm" key={variant.id}>
-                    {variant.title} · {formatMoney(variant.price)}
-                    {!variant.availableForSale && " · Ausverkauft"}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+            <Text fz="lg" fw={600} mt={24}>
+              {formatMoney(product.price)}
+            </Text>
 
-          <Link className={productButtonClass} href="/#kontakt">
-            Produkt anfragen
-          </Link>
+            <Group gap={10} mt={16}>
+              <Box
+                w={8}
+                h={8}
+                bg={product.availableForSale ? "#458254" : "var(--color-muted)"}
+                style={{ borderRadius: "50%" }}
+              />
+              <Text c="var(--color-muted)" fz="sm" fw={600}>
+                {product.availableForSale ? "Verfügbar" : "Aktuell ausverkauft"}
+              </Text>
+            </Group>
 
-          <div className="mt-10 border-t border-line pt-6">
-            <p className="mb-3 text-[0.68rem] font-semibold tracking-[0.1em] text-muted uppercase">
-              Über dieses Objekt
-            </p>
-            <p className="m-0 leading-[1.6] text-muted">
-              Aus einem echten Fahrzeugteil gefertigt. Kleine Spuren und
-              Abweichungen gehören zur Geschichte des Materials und machen jedes
-              Objekt einzigartig.
-            </p>
-          </div>
-        </section>
-      </div>
-    </main>
+            {product.description && (
+              <Text
+                c="var(--color-muted)"
+                fz="1.02rem"
+                lh={1.75}
+                mt={32}
+                style={{ whiteSpace: "pre-line" }}
+              >
+                {product.description}
+              </Text>
+            )}
+
+            {visibleVariants.length > 0 && (
+              <Box mt={32}>
+                <Divider color="var(--color-line)" mb={24} />
+                <Text
+                  c="var(--color-muted)"
+                  fz="0.68rem"
+                  fw={600}
+                  lts="0.1em"
+                  mb={12}
+                  tt="uppercase"
+                >
+                  Ausführungen
+                </Text>
+                <Group component="ul" gap={10} m={0} p={0} style={{ listStyle: "none" }}>
+                  {visibleVariants.map((variant) => (
+                    <Box
+                      component="li"
+                      key={variant.id}
+                      bd="1px solid var(--color-line)"
+                      px={12}
+                      py={10}
+                    >
+                      <Text fz="sm">
+                        {variant.title} · {formatMoney(variant.price)}
+                        {!variant.availableForSale && " · Ausverkauft"}
+                      </Text>
+                    </Box>
+                  ))}
+                </Group>
+              </Box>
+            )}
+
+            <Button
+              component="a"
+              href="/#kontakt"
+              color="dark"
+              radius={0}
+              size="lg"
+              fullWidth
+              mt={32}
+              fz="xs"
+              fw={700}
+              lts="0.09em"
+              tt="uppercase"
+            >
+              Produkt anfragen
+            </Button>
+
+            <Box mt={40}>
+              <Divider color="var(--color-line)" mb={24} />
+              <Text
+                c="var(--color-muted)"
+                fz="0.68rem"
+                fw={600}
+                lts="0.1em"
+                mb={12}
+                tt="uppercase"
+              >
+                Über dieses Objekt
+              </Text>
+              <Text c="var(--color-muted)" lh={1.6}>
+                Aus einem echten Fahrzeugteil gefertigt. Kleine Spuren und
+                Abweichungen gehören zur Geschichte des Materials und machen jedes
+                Objekt einzigartig.
+              </Text>
+            </Box>
+          </Box>
+        </GridCol>
+      </Grid>
+    </Box>
   );
 }
 

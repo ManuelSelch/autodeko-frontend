@@ -1,24 +1,60 @@
-import Link from "next/link";
-import {
-  productButtonClass,
-  productEyebrowClass,
-  productPageClass,
-  productTitleClass,
-} from "./tailwind-styles";
+import { Box, Button, Text, Title } from "@mantine/core";
 
 export default function ProductNotFound() {
   return (
-    <main className={productPageClass}>
-      <section className="mx-auto max-w-2xl py-[clamp(4rem,10vw,10rem)]">
-        <p className={productEyebrowClass}>404 / Auto Deko</p>
-        <h1 className={productTitleClass}>Produkt nicht gefunden.</h1>
-        <p className="mt-8 whitespace-pre-line text-[1.02rem] leading-[1.75] text-muted">
+    <Box
+      component="main"
+      mih="100vh"
+      bg="var(--color-paper)"
+      px="clamp(1.25rem, 5vw, 5rem)"
+      pt="clamp(2rem, 5vw, 5rem)"
+      pb="clamp(5rem, 9vw, 9rem)"
+    >
+      <Box component="section" maw="42rem" mx="auto" py="clamp(4rem, 10vw, 10rem)">
+        <Text
+          c="var(--color-accent)"
+          fz="xs"
+          fw={600}
+          lts="0.12em"
+          mb={20}
+          tt="uppercase"
+        >
+          404 / Auto Deko
+        </Text>
+
+        <Title
+          order={1}
+          ff="var(--font-display)"
+          fz="clamp(2.5rem, 4vw, 4rem)"
+          fw={500}
+          lh={1}
+          lts="-0.035em"
+          maw="11ch"
+          tt="uppercase"
+        >
+          Produkt nicht gefunden.
+        </Title>
+
+        <Text c="var(--color-muted)" fz="1.02rem" lh={1.75} mt={32}>
           Dieses Einzelstück ist nicht mehr verfügbar oder wurde verschoben.
-        </p>
-        <Link className={`${productButtonClass} sm:w-auto`} href="/#produkte">
+        </Text>
+
+        <Button
+          component="a"
+          href="/#produkte"
+          color="dark"
+          radius={0}
+          size="lg"
+          mt={32}
+          w={{ base: "100%", sm: "auto" }}
+          fz="xs"
+          fw={700}
+          lts="0.09em"
+          tt="uppercase"
+        >
           Zurück zu den Produkten
-        </Link>
-      </section>
-    </main>
+        </Button>
+      </Box>
+    </Box>
   );
 }
