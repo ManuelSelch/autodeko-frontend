@@ -1,5 +1,4 @@
 import { BrandStatement } from "@/components/home/brand-statement";
-import { BrandTicker } from "@/components/home/brand-ticker";
 import { ContactUs } from "@/components/home/contact-us";
 import { HeroSection } from "@/components/home/hero-section";
 import ProductShowcase from "@/components/home/product-showcase";

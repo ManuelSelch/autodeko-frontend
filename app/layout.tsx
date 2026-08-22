@@ -40,11 +40,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className="scroll-smooth motion-reduce:scroll-auto" {...mantineHtmlProps}>
+    <html
+      lang="de"
+      className="scroll-smooth motion-reduce:scroll-auto"
+      style={{ maxWidth: "100%", overflowX: "clip" }}
+      {...mantineHtmlProps}
+    >
       <head>
         <ColorSchemeScript defaultColorScheme="light" />
       </head>
-      <body className="min-w-80 bg-paper font-sans text-ink antialiased">
+      <body
+        className="min-w-80 bg-paper font-sans text-ink antialiased"
+        style={{ maxWidth: "100%", overflowX: "clip" }}
+      >
         <MantineProvider theme={theme} defaultColorScheme="light">
           <Header />
           {children}
