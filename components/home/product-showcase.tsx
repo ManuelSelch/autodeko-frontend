@@ -1,28 +1,40 @@
-"use client"
+"use client";
+
 import { Carousel, CarouselSlide } from "@mantine/carousel";
-import { Stack, Box, Image, Overlay } from "@mantine/core";
+import { Badge, Box, Image, Stack, Text, Title } from "@mantine/core";
 import autoFass from "@/img/auto-fass.png";
+import type { Product } from "@/lib/shopify/types";
 import { useState } from "react";
 
-export default function ProductShowcase({products}: {products: any[]}) {
+function formatPrice(amount: string, currencyCode: string) {
+  return new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: currencyCode,
+  }).format(Number(amount));
+}
+
+export default function ProductShowcase({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
+
+  if (products.length === 0) {
+    return (
+      <Stack align="center" py="xl">
+        <Title order={2}>Unsere Produkte</Title>
+        <Text c="dimmed">Aktuell sind keine Produkte verfügbar.</Text>
+      </Stack>
+    );
+  }
 
   return (
     <Stack c="white" align="center" className="relative">
-      {/* <Overlay 
-        gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%)"
-        opacity={0.85}
-        zIndex={1}
-      /> */}
-
+      <Title order={2}>Unsere Produkte</Title>
       <Box
         style={{
           position: "relative",
-          width: "full",
+          width: "100%",
           paddingTop: 80,
         }}
       >
-        {/* Spotlight glow */}
         <Box
           style={{
             position: "absolute",
@@ -38,7 +50,6 @@ export default function ProductShowcase({products}: {products: any[]}) {
           }}
         />
 
-        {/* The podium */}
         <Box
           style={{
             position: "absolute",
@@ -53,36 +64,42 @@ export default function ProductShowcase({products}: {products: any[]}) {
           }}
         />
 
-        {/* Carousel */}
-        <Carousel 
-          withIndicators 
-          height={400} 
-          slideSize="50%"
+        <Carousel
+          withIndicators
+          height={460}
+          slideSize={{ base: "100%", sm: "70%", md: "50%" }}
           onSlideChange={setActive}
           emblaOptions={{
-            loop: true,
+            loop: products.length > 1,
             dragFree: false,
-            align: "center"
+            align: "center",
           }}
         >
           {products.map((product, index) => (
-            <CarouselSlide key={index}>
-              <Box
+            <CarouselSlide key={product.id}>
+              <Stack
+                align="center"
+                gap="xs"
                 style={{
-                  height: 300,
-                  display: "flex",
-                  alignItems: "center",
+                  height: 410,
                   justifyContent: "center",
-                  fontSize: 40,
-                  fontWeight: 700,
+                  transition: "transform 300ms ease-in-out, opacity 300ms ease-in-out",
+                  transform: active === index ? "scale(1.05)" : "scale(0.8)",
+                  opacity: active === index ? 1 : 0.55,
                 }}
-                className={`
-                  transition-transform duration-300 ease-in-out
-                  ${active === index ? "scale-105" : "scale-80"}
-                `}
               >
-                <Image src={autoFass.src} h={"100%"} fit="contain" />
-              </Box>
+                <Image
+                  src={product.featuredImage?.url ?? autoFass.src}
+                  alt={product.featuredImage?.altText ?? product.title}
+                  h={300}
+                  fit="contain"
+                />
+                <Text fw={700} fz="xl">{product.title}</Text>
+                <Text c="gold" fw={700}>
+                  {formatPrice(product.price.amount, product.price.currencyCode)}
+                </Text>
+                {!product.availableForSale && <Badge color="gray">Ausverkauft</Badge>}
+              </Stack>
             </CarouselSlide>
           ))}
         </Carousel>

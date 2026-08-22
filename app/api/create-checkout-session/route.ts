@@ -1,5 +1,11 @@
 import Stripe from 'stripe';
 
+interface CheckoutItem {
+    name: string;
+    price: number;
+    quantity?: number;
+}
+
 const secret = process.env.STRIPE_SECRET_KEY;
 if(!secret) throw "STRIPE_SECRET_KEY not found";
 
@@ -11,13 +17,13 @@ export async function POST(req: Request) {
 
     try {
         const body = await req.json();
-        const items = body.items;
+        const items = body.items as CheckoutItem[];
 
         console.log(JSON.stringify(items));
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            line_items: items.map((item: any) => ({
+            line_items: items.map((item) => ({
                 price_data: {
                 currency: 'usd',
                 product_data: { name: item.name },

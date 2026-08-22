@@ -1,7 +1,9 @@
-import { Paper, Stack, Text } from "@mantine/core";
+import { Stack, Text } from "@mantine/core";
 import ProductShowcase from "@/components/home/product-showcase";
 import { ContactUs } from "@/components/home/contact-us";
 import api from "@/lib/api";
+
+export const revalidate = 300;
 
 export default async function Home() {
   const products = await api.getProducts();

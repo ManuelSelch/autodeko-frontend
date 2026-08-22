@@ -1,4 +1,4 @@
-import { Container, Divider, Group, Image, Paper } from '@mantine/core';
+import { Divider, Group, Image, Paper } from '@mantine/core';
 import logo from "@/img/logo.jpeg"
 
 export function Header() {
@@ -6,7 +6,7 @@ export function Header() {
     <header>
       <Paper bg="dark" pt="md">
         <Group justify='center'>
-            <Image src={logo.src} fit="contain" w={70} h={70}/>
+            <Image src={logo.src} alt="Auto Deko Logo" fit="contain" w={70} h={70}/>
         </Group>
         <Divider mt="md" color="gold"/>
       </Paper>

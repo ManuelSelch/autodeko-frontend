@@ -1,13 +1,16 @@
-import cockpit from "./cockpit";
+import { getShopifyStorefront, type Product } from "./shopify";
 
 class API {
-    async getProducts() {
-        try {
-            return await cockpit.getItems("products")
-        } catch {
-            return []
-        }
+  async getProducts(): Promise<Product[]> {
+    try {
+      return await getShopifyStorefront().getProducts();
+    } catch (error) {
+      console.error("Could not load products from Shopify", error);
+      return [];
     }
+  }
 }
 
-export default new API();
+const api = new API();
+
+export default api;

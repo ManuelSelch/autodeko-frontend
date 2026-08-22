@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Auto Deko frontend
 
-## Getting Started
+Small headless shop frontend built with Next.js and Mantine. Shopify provides the product catalogue and shop backend through the Storefront API.
 
-First, run the development server:
+## Shopify setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. In Shopify Admin, install/open the **Headless** sales channel.
+2. Create a storefront and grant Storefront API product read access.
+3. Copy `.env.default` to `.env.local`.
+4. Configure the server-side credentials:
+
+```dotenv
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+SHOPIFY_STOREFRONT_PRIVATE_TOKEN=your-private-storefront-token
+SHOPIFY_STOREFRONT_API_VERSION=2026-04
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Never prefix the private token with `NEXT_PUBLIC_`; it must not be sent to browsers.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Quality checks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm test
+npm run lint
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Current Shopify integration
 
-## Deploy on Vercel
+- Server-side Storefront GraphQL client: `lib/shopify/storefront.ts`
+- Environment-backed client factory: `lib/shopify/index.ts`
+- Product catalogue query and typed frontend product model
+- Shopify product images, titles, prices, and availability in the home-page carousel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A Shopify cart and redirect to Shopify Checkout are the next integration step.
