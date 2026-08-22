@@ -1,14 +1,24 @@
-import styles from "./home-page.module.css";
+import { displayTitleClass, eyebrowClass } from "./tailwind-styles";
 
 export function BrandStatement() {
   return (
-    <section className={styles.statement} id="ueber-uns" aria-labelledby="statement-title">
-      <p className={styles.eyebrow}>Unser Antrieb</p>
-      <h2 id="statement-title" className={styles.statementTitle}>
+    <section
+      className="grid justify-items-center bg-canvas px-[clamp(1.25rem,5vw,5.5rem)] py-[clamp(5rem,9vw,9rem)] text-center"
+      id="ueber-uns"
+      aria-labelledby="statement-title"
+    >
+      <p className={eyebrowClass}>Unser Antrieb</p>
+      <h2
+        id="statement-title"
+        className={`${displayTitleClass} max-w-[15ch] text-[clamp(2.6rem,4.8vw,5.25rem)] leading-none`}
+      >
         Wir geben ausgedienten Autoteilen ein zweites Leben –
-        <span className={styles.statementAccent}> als Objekte mit Geschichte.</span>
+        <span className="text-accent"> als Objekte mit Geschichte.</span>
       </h2>
-      <a className={styles.textLink} href="#handwerk">
+      <a
+        className="mt-8 inline-flex border-b border-current pb-1 text-xs font-bold tracking-[0.09em] text-ink uppercase no-underline"
+        href="#handwerk"
+      >
         Unser Handwerk entdecken
       </a>
     </section>
