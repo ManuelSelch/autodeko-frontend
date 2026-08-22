@@ -13,6 +13,7 @@ import {
 import { notFound } from "next/navigation";
 import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
+import { buildProductInquiryHref } from "@/lib/contact/product-inquiry";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { ProductImage } from "@/lib/shopify/types";
 import { ProductGallery } from "./product-gallery";
@@ -202,7 +203,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <Button
               component="a"
-              href="/contact"
+              href={buildProductInquiryHref(product.handle)}
               color="dark"
               radius={0}
               size="lg"
@@ -213,7 +214,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               lts="0.09em"
               tt="uppercase"
             >
-              Produkt anfragen
+              Dieses Produkt anfragen
             </Button>
 
             <Box mt={40}>

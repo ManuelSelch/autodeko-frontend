@@ -27,6 +27,13 @@ const initialState: ContactFormState = {
   errors: {},
 };
 
+type ContactFormProps = {
+  product?: {
+    handle: string;
+    title: string;
+  };
+};
+
 function SubmitButton() {
   const { pending } = useFormStatus();
 
@@ -48,7 +55,7 @@ function SubmitButton() {
   );
 }
 
-export function ContactForm() {
+export function ContactForm({ product }: ContactFormProps) {
   const [state, formAction] = useActionState(sendContactMessage, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -61,6 +68,9 @@ export function ContactForm() {
   return (
     <Box component="form" action={formAction} ref={formRef} noValidate>
       <Stack gap="lg">
+        {product && (
+          <input type="hidden" name="productHandle" value={product.handle} />
+        )}
         <Grid gutter="md">
           <GridCol span={{ base: 12, sm: 6 }}>
             <TextInput
@@ -112,6 +122,7 @@ export function ContactForm() {
               name="subject"
               label="Anliegen"
               required
+              defaultValue={product ? "Produktanfrage" : ""}
               error={state.errors.subject}
               radius={0}
               size="md"

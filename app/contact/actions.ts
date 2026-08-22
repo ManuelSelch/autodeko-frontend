@@ -1,6 +1,8 @@
 "use server";
 
 import { Resend } from "resend";
+import api from "@/lib/api";
+import { parseProductHandle } from "@/lib/contact/product-inquiry";
 import {
   type ContactFormState,
   type ContactInput,
@@ -15,6 +17,7 @@ export async function sendContactMessage(
   _previousState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  const productHandle = parseProductHandle(formValue(formData, "productHandle"));
   const input: ContactInput = {
     name: formValue(formData, "name"),
     email: formValue(formData, "email").toLowerCase(),
@@ -56,17 +59,31 @@ export async function sendContactMessage(
   }
 
   try {
+    const product = productHandle ? await api.getProduct(productHandle) : null;
+    const productUrl = productHandle
+      ? `https://autodeko.shop/products/${encodeURIComponent(productHandle)}`
+      : null;
+    const productLines = productHandle
+      ? [
+          `Produkt: ${product?.title ?? productHandle}`,
+          `Produkt-Handle: ${productHandle}`,
+          `Produkt-URL: ${productUrl}`,
+        ]
+      : [];
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
       replyTo: input.email,
-      subject: `Auto Deko Kontakt: ${input.subject}`,
+      subject: productHandle
+        ? `Auto Deko Produktanfrage: ${product?.title ?? productHandle}`
+        : `Auto Deko Kontakt: ${input.subject}`,
       text: [
         `Name: ${input.name}`,
         `E-Mail: ${input.email}`,
         `Telefon: ${input.phone || "Nicht angegeben"}`,
         `Anliegen: ${input.subject}`,
+        ...productLines,
         "",
         input.message,
       ].join("\n"),
