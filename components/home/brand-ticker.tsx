@@ -1,3 +1,6 @@
+import { Box, Group, Text } from "@mantine/core";
+import classes from "./brand-ticker.module.css";
+
 const messages = [
   "Handgefertigt in Bayern",
   "Echte Autoteile",
@@ -5,19 +8,43 @@ const messages = [
   "Design mit Geschichte",
 ];
 
+function TickerSequence() {
+  return (
+    <Group className={classes.sequence} gap={36} wrap="nowrap">
+      {messages.map((message) => (
+        <Text
+          component="span"
+          key={message}
+          fz="xs"
+          fw={700}
+          lts="0.1em"
+          tt="uppercase"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          {message}{" "}
+          <Text component="span" c="var(--color-accent)" aria-hidden="true">
+            ●
+          </Text>
+        </Text>
+      ))}
+    </Group>
+  );
+}
+
 export function BrandTicker() {
   return (
-    <div className="overflow-hidden bg-ink py-4 text-paper whitespace-nowrap" aria-label={messages.join(", ")}>
-      <div
-        className="flex w-max gap-9 px-6 text-xs font-bold tracking-[0.1em] uppercase"
-        aria-hidden="true"
-      >
-        {[...messages, ...messages].map((message, index) => (
-          <span key={`${message}-${index}`}>
-            {message} <span className="text-accent">●</span>
-          </span>
-        ))}
-      </div>
-    </div>
+    <Box
+      component="aside"
+      aria-label={messages.join(", ")}
+      bg="var(--color-ink)"
+      c="var(--color-paper)"
+      py={16}
+      style={{ overflow: "hidden" }}
+    >
+      <Box className={classes.track} aria-hidden="true">
+        <TickerSequence />
+        <TickerSequence />
+      </Box>
+    </Box>
   );
 }

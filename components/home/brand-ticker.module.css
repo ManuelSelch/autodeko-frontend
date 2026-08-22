@@ -1,0 +1,27 @@
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: ticker-scroll 20s linear infinite;
+}
+
+.sequence {
+  flex: 0 0 auto;
+  padding-inline: 1.5rem;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

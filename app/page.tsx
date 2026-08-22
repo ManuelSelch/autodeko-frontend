@@ -14,7 +14,6 @@ export default async function Home() {
   return (
     <main id="startseite">
       <HeroSection />
-      <BrandTicker />
       <ProductShowcase products={products} />
       <BrandStatement />
       <StorySections />
