@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Group, Image } from "@mantine/core";
+import { ActionIcon, Anchor, Box, Group, Image } from "@mantine/core";
 import { IconBrandInstagram, IconMail } from "@tabler/icons-react";
 import logo from "@/img/logo.png";
 
@@ -27,6 +27,18 @@ export default function Footer() {
         />
 
         <Group gap={8} wrap="nowrap">
+          <Anchor
+            component="a"
+            href="/imprint"
+            c="var(--color-ink)"
+            fz="xs"
+            fw={600}
+            lts="0.06em"
+            tt="uppercase"
+            underline="hover"
+          >
+            Impressum
+          </Anchor>
           <ActionIcon
             component="a"
             href="https://www.instagram.com/auto_deko"

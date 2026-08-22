@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import Footer from "./index";
 
 describe("Footer", () => {
-  it("shows only the logo and accessible Instagram and contact links", () => {
+  it("shows the logo and accessible Instagram, contact, and imprint links", () => {
     const markup = renderToStaticMarkup(
       <MantineProvider>
         <Footer />
@@ -15,7 +15,9 @@ describe("Footer", () => {
     expect(markup).toContain('aria-label="Auto Deko auf Instagram"');
     expect(markup).toContain('aria-label="Kontaktformular öffnen"');
     expect(markup).toContain('href="/contact"');
-    expect(markup.match(/<a\b/g)).toHaveLength(2);
+    expect(markup).toContain('href="/imprint"');
+    expect(markup).toContain("Impressum");
+    expect(markup.match(/<a\b/g)).toHaveLength(3);
     expect(markup).not.toContain("Individuelle Anfragen");
     expect(markup).not.toContain("Handgefertigte Einzelstücke");
   });
