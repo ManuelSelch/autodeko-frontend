@@ -1,5 +1,4 @@
 import {
-  Anchor,
   AspectRatio,
   Box,
   Grid,
@@ -20,18 +19,18 @@ import classes from "./product-showcase.module.css";
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <Anchor
+    <Box
+      component="a"
       className={classes.productLink}
       href={`/products/${product.handle}`}
       c="inherit"
       display="block"
-      underline="never"
     >
       <Box component="article" miw={0}>
         <AspectRatio ratio={4 / 5}>
           <Box
+            className={classes.imageCanvas}
             pos="relative"
-            bg="var(--color-paper)"
             style={{ overflow: "hidden" }}
           >
             <Image
@@ -41,6 +40,7 @@ function ProductCard({ product }: { product: Product }) {
               h="100%"
               w="100%"
               loading="lazy"
+              draggable={false}
             />
 
             {!product.availableForSale && (
@@ -91,7 +91,7 @@ function ProductCard({ product }: { product: Product }) {
           </Text>
         </Group>
       </Box>
-    </Anchor>
+    </Box>
   );
 }
 

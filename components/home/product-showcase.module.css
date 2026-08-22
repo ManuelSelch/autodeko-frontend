@@ -1,6 +1,29 @@
 .productLink,
+.productLink:visited,
 .productLink:hover,
 .productLink:focus,
+.productLink:focus-visible,
 .productLink:active {
-  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.imageCanvas,
+.productLink:hover .imageCanvas,
+.productLink:focus .imageCanvas,
+.productLink:active .imageCanvas {
+  background-color: var(--color-paper) !important;
+}
+
+.productLink:hover img,
+.productLink:focus img,
+.productLink:active img {
+  opacity: 1;
+  filter: none;
+  transform: none;
 }
