@@ -2,7 +2,6 @@ import {
   Anchor,
   AspectRatio,
   Box,
-  Center,
   Grid,
   GridCol,
   Group,
@@ -85,18 +84,16 @@ export default function ProductShowcase({ products }: { products: Product[] }) {
                 underline="never"
               >
                 <Box component="article" miw={0}>
-                  <AspectRatio ratio={4 / 5} bg="var(--color-canvas)">
+                  <AspectRatio ratio={4 / 5}>
                     <Box pos="relative" style={{ overflow: "hidden" }}>
-                      <Center h="100%">
-                        <Image
-                          src={product.featuredImage?.url ?? autoFass.src}
-                          alt={product.featuredImage?.altText ?? product.title}
-                          fit="contain"
-                          h="82%"
-                          w="82%"
-                          loading="lazy"
-                        />
-                      </Center>
+                      <Image
+                        src={product.featuredImage?.url ?? autoFass.src}
+                        alt={product.featuredImage?.altText ?? product.title}
+                        fit="contain"
+                        h="100%"
+                        w="100%"
+                        loading="lazy"
+                      />
 
                       {!product.availableForSale && (
                         <Box
