@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import {
   Anchor,
-  AspectRatio,
   Box,
   Button,
   Divider,
   Grid,
   GridCol,
   Group,
-  Image,
   Text,
   Title,
 } from "@mantine/core";
@@ -17,6 +15,7 @@ import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { ProductImage } from "@/lib/shopify/types";
+import { ProductGallery } from "./product-gallery";
 
 interface ProductPageProps {
   params: Promise<{ handle: string }>;
@@ -102,42 +101,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <Grid gutter="clamp(3rem, 7vw, 8rem)" align="flex-start" maw="92rem" mx="auto">
         <GridCol span={{ base: 12, md: 7 }}>
-          <Grid gutter={16} aria-label={`Produktbilder von ${product.title}`}>
-            {images.length > 0 ? (
-              images.map((image, index) => (
-                <GridCol
-                  span={index === 0 ? 12 : { base: 12, sm: 6 }}
-                  key={`${image.url}-${index}`}
-                >
-                  <AspectRatio
-                    ratio={index === 0 ? 1 : 4 / 5}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <Image
-                      src={image.url}
-                      alt={image.altText ?? `${product.title}, Ansicht ${index + 1}`}
-                      fit="contain"
-                      h="100%"
-                      w="100%"
-                      loading={index === 0 ? "eager" : "lazy"}
-                    />
-                  </AspectRatio>
-                </GridCol>
-              ))
-            ) : (
-              <GridCol span={12}>
-                <AspectRatio ratio={1} style={{ overflow: "hidden" }}>
-                  <Image
-                    src={autoFass.src}
-                    alt={product.title}
-                    fit="contain"
-                    h="100%"
-                    w="100%"
-                  />
-                </AspectRatio>
-              </GridCol>
-            )}
-          </Grid>
+          <ProductGallery
+            images={images}
+            productTitle={product.title}
+            fallbackImage={autoFass.src}
+          />
         </GridCol>
 
         <GridCol span={{ base: 12, md: 5 }}>
