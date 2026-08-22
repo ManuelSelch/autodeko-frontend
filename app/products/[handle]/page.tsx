@@ -4,7 +4,6 @@ import {
   AspectRatio,
   Box,
   Button,
-  Center,
   Divider,
   Grid,
   GridCol,
@@ -112,34 +111,29 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 >
                   <AspectRatio
                     ratio={index === 0 ? 1 : 4 / 5}
-                    bg="var(--color-canvas)"
                     style={{ overflow: "hidden" }}
                   >
-                    <Center>
-                      <Image
-                        src={image.url}
-                        alt={image.altText ?? `${product.title}, Ansicht ${index + 1}`}
-                        fit="contain"
-                        h="84%"
-                        w="84%"
-                        loading={index === 0 ? "eager" : "lazy"}
-                      />
-                    </Center>
+                    <Image
+                      src={image.url}
+                      alt={image.altText ?? `${product.title}, Ansicht ${index + 1}`}
+                      fit="contain"
+                      h="100%"
+                      w="100%"
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
                   </AspectRatio>
                 </GridCol>
               ))
             ) : (
               <GridCol span={12}>
-                <AspectRatio ratio={1} bg="var(--color-canvas)" style={{ overflow: "hidden" }}>
-                  <Center>
-                    <Image
-                      src={autoFass.src}
-                      alt={product.title}
-                      fit="contain"
-                      h="84%"
-                      w="84%"
-                    />
-                  </Center>
+                <AspectRatio ratio={1} style={{ overflow: "hidden" }}>
+                  <Image
+                    src={autoFass.src}
+                    alt={product.title}
+                    fit="contain"
+                    h="100%"
+                    w="100%"
+                  />
                 </AspectRatio>
               </GridCol>
             )}
