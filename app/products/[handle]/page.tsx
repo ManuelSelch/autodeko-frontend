@@ -131,12 +131,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
               id="product-title"
               order={1}
               ff="var(--font-display)"
-              fz="clamp(2.5rem, 4vw, 4rem)"
-              fw={500}
+              fw={400}
               lh={1}
               lts="-0.035em"
-              maw="11ch"
-              tt="uppercase"
             >
               {product.title}
             </Title>
