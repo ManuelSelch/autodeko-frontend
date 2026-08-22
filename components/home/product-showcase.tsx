@@ -16,10 +16,12 @@ import autoFass from "@/img/auto-fass.png";
 import { curateProducts } from "@/lib/shopify/curate-products";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
+import classes from "./product-showcase.module.css";
 
 function ProductCard({ product }: { product: Product }) {
   return (
     <Anchor
+      className={classes.productLink}
       href={`/products/${product.handle}`}
       c="inherit"
       display="block"
@@ -27,7 +29,11 @@ function ProductCard({ product }: { product: Product }) {
     >
       <Box component="article" miw={0}>
         <AspectRatio ratio={4 / 5}>
-          <Box pos="relative" style={{ overflow: "hidden" }}>
+          <Box
+            pos="relative"
+            bg="var(--color-paper)"
+            style={{ overflow: "hidden" }}
+          >
             <Image
               src={product.featuredImage?.url ?? autoFass.src}
               alt={product.featuredImage?.altText ?? product.title}

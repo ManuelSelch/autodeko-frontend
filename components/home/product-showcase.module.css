@@ -1,0 +1,6 @@
+.productLink,
+.productLink:hover,
+.productLink:focus,
+.productLink:active {
+  background-color: transparent;
+}
