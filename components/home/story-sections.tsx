@@ -17,11 +17,12 @@ function StoryCopy({ children, eyebrow, id, title }: StoryCopyProps) {
       justify="center"
       gap={0}
       h="100%"
-      mih={{ base: 280, sm: 540 }}
+      mih={{ base: "auto", sm: 540 }}
       bg="var(--color-paper)"
-      p="clamp(3rem, 8vw, 9rem)"
+      px={{ base: 24, sm: "clamp(3rem, 8vw, 9rem)" }}
+      py={{ base: 44, sm: "clamp(3rem, 8vw, 9rem)" }}
     >
-      <Group gap="sm" mb={24}>
+      <Group gap="sm" mb={{ base: 18, sm: 24 }}>
         <Box w={44} h={2} bg="var(--color-accent)" />
         <Text
           c="var(--color-muted)"
@@ -39,11 +40,14 @@ function StoryCopy({ children, eyebrow, id, title }: StoryCopyProps) {
         order={2}
         c="var(--color-ink)"
         ff="var(--font-display)"
-        fz="clamp(2.1rem, 3.2vw, 3rem)"
+        fz={{
+          base: "clamp(1.8rem, 8vw, 2.25rem)",
+          sm: "clamp(2.1rem, 3.2vw, 3rem)",
+        }}
         fw={500}
         lh={1.05}
         lts="-0.035em"
-        maw="9ch"
+        maw={{ base: "12ch", sm: "9ch" }}
         tt="uppercase"
       >
         {title}
@@ -51,10 +55,10 @@ function StoryCopy({ children, eyebrow, id, title }: StoryCopyProps) {
 
       <Text
         c="var(--color-muted)"
-        fz="1.05rem"
+        fz={{ base: "0.95rem", sm: "1.05rem" }}
         lh={1.75}
         maw="32rem"
-        mt={28}
+        mt={{ base: 20, sm: 28 }}
       >
         {children}
       </Text>
@@ -67,19 +71,22 @@ export function StorySections() {
     <Box id="handwerk">
       <Box component="section" aria-labelledby="story-bestseller">
         <Grid gutter={0} align="stretch">
-          <GridCol span={{ base: 6, sm: 6 }}>
-            <Box h="100%" mih={{ base: 280, sm: 540 }} style={{ overflow: "hidden" }}>
+          <GridCol span={{ base: 12, sm: 6 }}>
+            <Box
+              h={{ base: "clamp(15rem, 70vw, 25rem)", sm: "100%" }}
+              mih={{ base: 0, sm: 540 }}
+              style={{ overflow: "hidden" }}
+            >
               <Image
                 src={bestseller.src}
                 alt="Uhr aus Bremsscheibe und rotem Audi-RS-Bremssattel vor einem roten Sportwagen"
                 fit="cover"
                 h="100%"
-                mih={{ base: 280, sm: 540 }}
               />
             </Box>
           </GridCol>
 
-          <GridCol span={{ base: 6, sm: 6 }}>
+          <GridCol span={{ base: 12, sm: 6 }}>
             <StoryCopy
               eyebrow="Unser Bestseller"
               id="story-bestseller"
@@ -95,10 +102,10 @@ export function StorySections() {
 
       <Box component="section" aria-labelledby="story-craft">
         <Grid gutter={0} align="stretch">
-          <GridCol span={{ base: 6, sm: 6 }} order={{ base: 2, sm: 2 }}>
+          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
             <Center
-              h="100%"
-              mih={{ base: 280, sm: 540 }}
+              h={{ base: "clamp(15rem, 70vw, 25rem)", sm: "100%" }}
+              mih={{ base: 0, sm: 540 }}
               bg="#d7d5cc"
               style={{ overflow: "hidden" }}
             >
@@ -107,13 +114,12 @@ export function StorySections() {
                 alt="Handgefertigte Uhr aus einer Porsche-Bremsscheibe"
                 fit="cover"
                 h="100%"
-                mih={{ base: 280, sm: 540 }}
                 style={{ filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.2))" }}
               />
             </Center>
           </GridCol>
 
-          <GridCol span={{ base: 6, sm: 6 }} order={{ base: 1, sm: 1 }}>
+          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
             <StoryCopy
               eyebrow="Echte Handarbeit"
               id="story-craft"
