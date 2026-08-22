@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Box, Center, Grid, GridCol, Group, Image, Stack, Text, Title } from "@mantine/core";
 import bestseller from "@/img/bestseller.jpg";
-import clock from "@/img/clock.png";
+import clockWoman from "@/img/clock_woman.png";
 
 type StoryCopyProps = {
   children: ReactNode;
@@ -103,11 +103,11 @@ export function StorySections() {
               style={{ overflow: "hidden" }}
             >
               <Image
-                src={clock.src}
+                src={clockWoman.src}
                 alt="Handgefertigte Uhr aus einer Porsche-Bremsscheibe"
-                fit="contain"
-                mah={560}
-                w="min(66%, 510px)"
+                fit="cover"
+                h="100%"
+                mih={{ base: 280, sm: 540 }}
                 style={{ filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.2))" }}
               />
             </Center>
