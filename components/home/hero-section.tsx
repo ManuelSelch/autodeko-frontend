@@ -1,21 +1,53 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import hero from "@/img/hero.jpg";
 import { displayTitleClass } from "./tailwind-styles";
 
+// Desktop hero controls. Change these two values directly:
+// - 1 = no extra zoom, 1.1 = 10% zoom, 1.25 = 25% zoom
+// - "50% 100%" = horizontal center and vertical bottom
+const DESKTOP_HERO_ZOOM = 1.08;
+const DESKTOP_HERO_POSITION = "50% 100%";
+
+const desktopFrameStyle: CSSProperties = {
+  transform: `scale(${DESKTOP_HERO_ZOOM})`,
+  transformOrigin: "50% 100%",
+};
+
+const desktopImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: DESKTOP_HERO_POSITION,
+};
+
 export function HeroSection() {
   return (
     <section
-      className="relative flex min-h-[calc(100svh-82px)] items-end overflow-hidden bg-ink"
+      className="relative flex aspect-[3/4] min-h-0 items-end overflow-hidden bg-ink md:aspect-auto md:min-h-[calc(100svh-82px)]"
       aria-labelledby="hero-title"
     >
-      <Image
-        className="object-cover object-[center_40%]"
-        src={hero}
-        alt="Automotive-Szene mit Sportwagen und einer Uhr aus einer Bremsscheibe"
-        fill
-        priority
-        sizes="100vw"
-      />
+      {/* Separate mobile and desktop layers make their crop settings independent. */}
+      <div className="absolute inset-0 md:hidden">
+        <Image
+          style={{ objectFit: "cover", objectPosition: "50% 50%" }}
+          src={hero}
+          alt="Automotive-Szene mit Sportwagen und einer Uhr aus einer Bremsscheibe"
+          fill
+          priority
+          sizes="100vw"
+        />
+      </div>
+
+      <div className="absolute inset-0 hidden overflow-hidden md:block" style={desktopFrameStyle}>
+        <Image
+          style={desktopImageStyle}
+          src={hero}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+        />
+      </div>
+
       <div
         className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-black/10"
         aria-hidden="true"
