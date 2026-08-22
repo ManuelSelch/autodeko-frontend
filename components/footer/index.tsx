@@ -22,7 +22,7 @@ export default function Footer() {
           <nav className="grid gap-2.5" aria-label="Fußzeilennavigation">
             <a className={footerLinkClass} href="#produkte">Produkte</a>
             <a className={footerLinkClass} href="#ueber-uns">Über uns</a>
-            <a className={footerLinkClass} href="#kontakt">Kontakt</a>
+            <a className={footerLinkClass} href="/contact">Kontakt</a>
           </nav>
         </div>
 

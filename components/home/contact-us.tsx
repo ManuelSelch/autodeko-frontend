@@ -52,7 +52,7 @@ export function ContactUs() {
 
             <Button
               component="a"
-              href="#footer-contact"
+              href="/contact"
               color="dark"
               radius={0}
               size="md"

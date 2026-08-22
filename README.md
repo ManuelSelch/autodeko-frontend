@@ -17,6 +17,18 @@ SHOPIFY_STOREFRONT_API_VERSION=2026-04
 
 Never prefix the private token with `NEXT_PUBLIC_`; it must not be sent to browsers.
 
+## Contact form setup
+
+The Mantine contact form is available at `/contact` and sends messages through Resend. Add these server-side values to `.env.local`:
+
+```dotenv
+RESEND_API_KEY=re_xxx
+RESEND_FROM_EMAIL=Auto Deko <kontakt@your-verified-domain.de>
+CONTACT_TO_EMAIL=kontakt@your-domain.de
+```
+
+`RESEND_FROM_EMAIL` must use a sender domain verified in Resend. None of these values should use the `NEXT_PUBLIC_` prefix.
+
 ## Development
 
 ```bash

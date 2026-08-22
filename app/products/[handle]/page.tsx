@@ -240,7 +240,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <Button
               component="a"
-              href="/#kontakt"
+              href="/contact"
               color="dark"
               radius={0}
               size="lg"
