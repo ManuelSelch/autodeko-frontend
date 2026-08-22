@@ -3,11 +3,11 @@ import logo from "@/img/logo.png";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-transparent bg-paper/90">
       <Stack>
         <Center>
             <Image
-              className="h-16 w-16 object-contain"
+              className="h-24 w-16 object-contain drop-shadow-md"
               src={logo.src}
               alt="Auto Deko Handmade"
               fit="contain"
