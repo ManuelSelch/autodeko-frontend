@@ -1,6 +1,9 @@
-import { Stack, Text } from "@mantine/core";
-import ProductShowcase from "@/components/home/product-showcase";
+import { BrandStatement } from "@/components/home/brand-statement";
+import { BrandTicker } from "@/components/home/brand-ticker";
 import { ContactUs } from "@/components/home/contact-us";
+import { HeroSection } from "@/components/home/hero-section";
+import ProductShowcase from "@/components/home/product-showcase";
+import { StorySections } from "@/components/home/story-sections";
 import api from "@/lib/api";
 
 export const revalidate = 300;
@@ -9,17 +12,13 @@ export default async function Home() {
   const products = await api.getProducts();
 
   return (
-    <Stack>
-      <Stack align="center" gap={0} py="lg" bg="light">
-        <Text fz={"h3"} c="white">Wir geben alten <Text span fz={"h3"} c="gold" fw="bold">Auto</Text>teilen ein neues Leben</Text>
-        <Text fz={"h3"} c="white">–</Text>
-        <Text fz={"h3"} c="white">als stilvolle, handgefertigte <Text span fz={"h3"} c="gold" fw="bold">Deko</Text>objekte.</Text>
-      </Stack>
-
-      <Stack c={"white"} pt={"lg"}>
-        <ProductShowcase products={products} />
-        <ContactUs/>
-      </Stack> 
-    </Stack>
+    <main id="startseite">
+      <HeroSection />
+      <BrandTicker />
+      <ProductShowcase products={products} />
+      <BrandStatement />
+      <StorySections />
+      <ContactUs />
+    </main>
   );
 }
