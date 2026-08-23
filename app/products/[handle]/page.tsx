@@ -123,7 +123,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {formatMoney(product.price)}
               </Text>
               <Text c="var(--color-muted)" fz="sm" fw={400} mt={4}>
-                inklusive Meherwertsteuer, exklusive Versandkosten
+                inklusive Meherwertsteuer, inklusive Versandkosten
               </Text>
             </Box>
 
