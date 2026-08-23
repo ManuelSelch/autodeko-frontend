@@ -1,0 +1,138 @@
+.bestsellerContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.bestsellerImage {
+  transition: transform 320ms ease, filter 320ms ease;
+  transform: scale(1);
+}
+
+.bestsellerLink {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bestsellerLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+.inquireButton {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 2rem);
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  color: var(--color-paper);
+  background: var(--color-ink);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 220ms ease, transform 220ms ease, background-color 180ms ease;
+}
+
+.inquireButton:hover,
+.inquireButton:focus-visible {
+  color: var(--color-paper);
+  background: var(--color-accent);
+}
+
+.inquireButton:focus-visible {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bestsellerContainer:hover .inquireButton,
+  .bestsellerContainer:focus-within .inquireButton {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .bestsellerContainer:hover .bestsellerImage,
+  .bestsellerContainer:focus-within .bestsellerImage {
+    filter: brightness(0.94);
+    transform: scale(1.04);
+  }
+}
+
+.craftContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.craftImage {
+  transition: transform 320ms ease, filter 320ms ease;
+  transform: scale(1);
+}
+
+.contactButton {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 2rem);
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  color: var(--color-paper);
+  background: var(--color-ink);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 220ms ease, transform 220ms ease, background-color 180ms ease;
+  text-decoration: none;
+}
+
+.contactButton:hover,
+.contactButton:focus-visible {
+  color: var(--color-paper);
+  background: var(--color-accent);
+}
+
+.contactButton:focus-visible {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .craftContainer:hover .contactButton,
+  .craftContainer:focus-within .contactButton {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .craftContainer:hover .craftImage,
+  .craftContainer:focus-within .craftImage {
+    filter: brightness(0.94);
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bestsellerImage,
+  .inquireButton,
+  .craftImage,
+  .contactButton {
+    transition: none;
+  }
+}

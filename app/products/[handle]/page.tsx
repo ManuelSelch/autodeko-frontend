@@ -118,9 +118,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               )}
             </Title>
 
-            <Text fz="lg" fw={600} mt={24}>
-              {formatMoney(product.price)}
-            </Text>
+            <Box mt={24}>
+              <Text fz="lg" fw={600}>
+                {formatMoney(product.price)}
+              </Text>
+              <Text c="var(--color-muted)" fz="sm" fw={400} mt={4}>
+                inklusive Meherwertsteuer, exklusive Versandkosten
+              </Text>
+            </Box>
 
             <Group gap={10} mt={16}>
               <Box

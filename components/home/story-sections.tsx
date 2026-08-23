@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { Box, Center, Grid, GridCol, Group, Image, Stack, Text, Title } from "@mantine/core";
+import { Anchor, Box, Grid, GridCol, Group, Image, Stack, Text, Title } from "@mantine/core";
 import bestseller from "@/img/bestseller.jpg";
 import clockWoman from "@/img/clock_woman.png";
+import styles from "./story-sections.module.css";
 
 type StoryCopyProps = {
   children: ReactNode;
@@ -73,17 +74,32 @@ export function StorySections() {
         <Grid gutter={0} align="stretch">
           <GridCol span={{ base: 12, sm: 6 }}>
             <Box
+              className={styles.bestsellerContainer}
               h={{ base: "clamp(15rem, 70vw, 25rem)", sm: "100%" }}
               mih={{ base: 0, sm: 540 }}
-              style={{ overflow: "hidden" }}
+              pos="relative"
             >
-              <Image
-                src={bestseller.src}
-                alt="Uhr aus Bremsscheibe und rotem Audi-RS-Bremssattel vor einem roten Sportwagen"
-                fit="cover"
+              <Anchor
+                href="/products/asset-pack-101507563522-example-product-2"
+                className={styles.bestsellerLink}
+                display="block"
                 h="100%"
-                style={{ objectPosition: "50% 30%" }}
-              />
+              >
+                <Image
+                  className={styles.bestsellerImage}
+                  src={bestseller.src}
+                  alt="Uhr aus Bremsscheibe und rotem Audi-RS-Bremssattel vor einem roten Sportwagen"
+                  fit="cover"
+                  h="100%"
+                  style={{ objectPosition: "50% 30%" }}
+                />
+              </Anchor>
+              <Anchor
+                href="/products/asset-pack-101507563522-example-product-2"
+                className={styles.inquireButton}
+              >
+                Anfragen
+              </Anchor>
             </Box>
           </GridCol>
 
@@ -104,13 +120,16 @@ export function StorySections() {
       <Box component="section" aria-labelledby="story-craft">
         <Grid gutter={0} align="stretch">
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
-            <Center
+            <Box
+              className={styles.craftContainer}
               h={{ base: "clamp(15rem, 70vw, 25rem)", sm: "100%" }}
               mih={{ base: 0, sm: 540 }}
+              pos="relative"
               bg="#d7d5cc"
               style={{ overflow: "hidden" }}
             >
               <Image
+                className={styles.craftImage}
                 src={clockWoman.src}
                 alt="Handgefertigte Uhr aus einer Porsche-Bremsscheibe"
                 fit="cover"
@@ -120,7 +139,13 @@ export function StorySections() {
                   objectPosition: "50% 30%",
                 }}
               />
-            </Center>
+              <Anchor
+                href="/contact"
+                className={styles.contactButton}
+              >
+                Kontaktmöglichkeiten
+              </Anchor>
+            </Box>
           </GridCol>
 
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
