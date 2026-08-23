@@ -139,12 +139,6 @@ export function StorySections() {
                   objectPosition: "50% 30%",
                 }}
               />
-              <Anchor
-                href="/contact"
-                className={styles.contactButton}
-              >
-                Kontaktmöglichkeiten
-              </Anchor>
             </Box>
           </GridCol>
 
