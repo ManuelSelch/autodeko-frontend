@@ -47,7 +47,7 @@ export function ContactUs() {
           <Box maw="26rem" ml={{ base: 0, sm: "auto" }}>
             <Text lh={1.7}>
               Individuelle Anfragen sind willkommen. Gemeinsam finden wir heraus,
-              welches neue Leben in deinem Autoteil steckt.
+              welches Unikat zu dir passt
             </Text>
 
             <Button
