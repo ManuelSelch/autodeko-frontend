@@ -5,7 +5,7 @@ import { displayTitleClass } from "./tailwind-styles";
 
 // Desktop hero controls. Change these two values directly:
 // - "50% 100%" = horizontal center and vertical bottom
-const DESKTOP_HERO_POSITION = "50% 80%";
+const DESKTOP_HERO_POSITION = "50% 78%";
 
 const desktopFrameStyle: CSSProperties = {
   transform: `scale(1)`,
@@ -20,7 +20,7 @@ const desktopImageStyle: CSSProperties = {
 export function HeroSection() {
   return (
     <section
-      className="relative flex h-[calc(100svh-82px)] items-end overflow-hidden bg-ink md:h-[calc(100vh-82px)]"
+      className="relative flex h-[calc(100svh-82px)] items-end overflow-hidden bg-ink md:-mt-[96px] md:h-screen"
       aria-labelledby="hero-title"
     >
       {/* Separate mobile and desktop layers make their crop settings independent. */}
