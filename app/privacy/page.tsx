@@ -49,7 +49,7 @@ export default function PrivacyPage() {
         <Title
           order={1}
           ff="var(--font-display)"
-          fz="clamp(2.25rem, 4vw, 4rem)"
+          fz="clamp(1.75rem, 4vw, 4rem)"
           fw={500}
           lh={0.98}
           lts="-0.04em"
