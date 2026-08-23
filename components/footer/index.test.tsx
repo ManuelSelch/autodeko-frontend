@@ -19,6 +19,7 @@ describe("Footer", () => {
     expect(markup).toContain("Impressum");
     expect(markup).toContain('href="/privacy"');
     expect(markup).toContain("Datenschutz");
+    expect(markup.match(/font-weight:400/g)).toHaveLength(2);
     expect(markup.match(/<a\b/g)).toHaveLength(4);
     expect(markup).not.toContain("Individuelle Anfragen");
     expect(markup).not.toContain("Handgefertigte Einzelstücke");

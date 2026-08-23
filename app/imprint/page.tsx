@@ -34,7 +34,7 @@ export default function ImprintPage() {
         <Title
           order={1}
           ff="var(--font-display)"
-          fz="clamp(2.75rem, 6vw, 5.5rem)"
+          fz="clamp(2.25rem, 4vw, 4rem)"
           fw={500}
           lh={0.98}
           lts="-0.04em"

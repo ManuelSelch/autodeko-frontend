@@ -32,8 +32,8 @@ export default function Footer() {
             href="/imprint"
             c="var(--color-ink)"
             fz="xs"
-            fw={600}
             lts="0.06em"
+            style={{ fontWeight: 400 }}
             tt="uppercase"
             underline="hover"
           >
@@ -44,8 +44,8 @@ export default function Footer() {
             href="/privacy"
             c="var(--color-ink)"
             fz="xs"
-            fw={600}
             lts="0.06em"
+            style={{ fontWeight: 400 }}
             tt="uppercase"
             underline="hover"
           >

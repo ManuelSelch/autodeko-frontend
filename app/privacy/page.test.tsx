@@ -16,6 +16,7 @@ describe("PrivacyPage", () => {
     );
 
     expect(markup).toContain("Datenschutzerklärung");
+    expect(markup).toContain("font-size:clamp(2.25rem, 4vw, 4rem)");
     expect(markup).toContain("Verantwortlicher");
     expect(markup).toContain("Marco Selch");
     expect(markup).toContain("David Kokai");
