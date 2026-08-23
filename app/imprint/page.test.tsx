@@ -16,7 +16,7 @@ describe("ImprintPage", () => {
     );
 
     expect(markup).toContain("Impressum");
-    expect(markup).toContain("font-size:clamp(2.25rem, 4vw, 4rem)");
+    expect(markup).toContain("font-size:clamp(1.75rem, 4vw, 4rem)");
     expect(markup).toContain("Angaben gemäß § 5 DDG");
     expect(markup).toContain("Auto Deko");
     expect(markup).toContain("Marco Selch");
