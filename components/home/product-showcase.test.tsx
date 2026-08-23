@@ -16,7 +16,7 @@ const product: Product = {
 };
 
 describe("ProductCard", () => {
-  it("offers a contextual inquiry action in addition to the product link", () => {
+  it("offers a details action that links to the product page", () => {
     const markup = renderToStaticMarkup(
       <MantineProvider>
         <ProductCard product={product} />
@@ -24,12 +24,11 @@ describe("ProductCard", () => {
     );
 
     expect(markup).toContain('href="/products/ferrari-carbon-keramik-gelb"');
+    expect(markup).toContain("Details");
     expect(markup).toContain(
-      'href="/contact?product=ferrari-carbon-keramik-gelb"',
+      'aria-label="Details zu Ferrari Carbon Keramik Gelb"',
     );
-    expect(markup).toContain("Anfragen");
-    expect(markup).toContain(
-      'aria-label="Ferrari Carbon Keramik Gelb anfragen"',
-    );
+    expect(markup).not.toContain("/contact?product=");
+    expect(markup).not.toContain("Anfragen");
   });
 });

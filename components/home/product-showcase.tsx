@@ -12,7 +12,6 @@ import {
   Title,
 } from "@mantine/core";
 import autoFass from "@/img/auto-fass.png";
-import { buildProductInquiryHref } from "@/lib/contact/product-inquiry";
 import { curateProducts } from "@/lib/shopify/curate-products";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
@@ -69,11 +68,11 @@ export function ProductCard({ product }: { product: Product }) {
 
           <Box
             component="a"
-            className={classes.inquiryButton}
-            href={buildProductInquiryHref(product.handle)}
-            aria-label={`${product.title} anfragen`}
+            className={classes.detailsButton}
+            href={productHref}
+            aria-label={`Details zu ${product.title}`}
           >
-            Anfragen
+            Details
           </Box>
         </Box>
       </AspectRatio>

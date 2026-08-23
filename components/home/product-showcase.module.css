@@ -9,7 +9,7 @@
 
 .imageLink,
 .productTitleLink,
-.inquiryButton {
+.detailsButton {
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
@@ -25,7 +25,7 @@
 
 .imageLink:focus-visible,
 .productTitleLink:focus-visible,
-.inquiryButton:focus-visible {
+.detailsButton:focus-visible {
   outline: 2px solid var(--color-accent);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .productTitleLink:focus-visible,
-.inquiryButton:focus-visible {
+.detailsButton:focus-visible {
   outline-offset: 3px;
 }
 
@@ -43,7 +43,7 @@
   transform: scale(1);
 }
 
-.inquiryButton {
+.detailsButton {
   position: absolute;
   right: clamp(0.5rem, 1.2vw, 0.875rem);
   bottom: clamp(0.5rem, 1.2vw, 0.875rem);
@@ -63,21 +63,21 @@
   transition: opacity 220ms ease, transform 220ms ease, background-color 180ms ease;
 }
 
-.inquiryButton:hover,
-.inquiryButton:focus-visible {
+.detailsButton:hover,
+.detailsButton:focus-visible {
   color: var(--color-paper);
   background: var(--color-accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .inquiryButton {
+  .detailsButton {
     pointer-events: none;
     opacity: 0;
     transform: translateY(12px);
   }
 
-  .productCard:hover .inquiryButton,
-  .productCard:focus-within .inquiryButton {
+  .productCard:hover .detailsButton,
+  .productCard:focus-within .detailsButton {
     pointer-events: auto;
     opacity: 1;
     transform: translateY(0);
@@ -92,7 +92,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .productImage,
-  .inquiryButton {
+  .detailsButton {
     transition: none;
   }
 }
