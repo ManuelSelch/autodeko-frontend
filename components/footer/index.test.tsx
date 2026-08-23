@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import Footer from "./index";
 
 describe("Footer", () => {
-  it("shows the logo and accessible Instagram, contact, and imprint links", () => {
+  it("shows the logo and accessible social, contact, and legal links", () => {
     const markup = renderToStaticMarkup(
       <MantineProvider>
         <Footer />
@@ -17,7 +17,9 @@ describe("Footer", () => {
     expect(markup).toContain('href="/contact"');
     expect(markup).toContain('href="/imprint"');
     expect(markup).toContain("Impressum");
-    expect(markup.match(/<a\b/g)).toHaveLength(3);
+    expect(markup).toContain('href="/privacy"');
+    expect(markup).toContain("Datenschutz");
+    expect(markup.match(/<a\b/g)).toHaveLength(4);
     expect(markup).not.toContain("Individuelle Anfragen");
     expect(markup).not.toContain("Handgefertigte Einzelstücke");
   });

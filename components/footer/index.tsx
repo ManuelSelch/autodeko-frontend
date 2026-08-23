@@ -39,6 +39,18 @@ export default function Footer() {
           >
             Impressum
           </Anchor>
+          <Anchor
+            component="a"
+            href="/privacy"
+            c="var(--color-ink)"
+            fz="xs"
+            fw={600}
+            lts="0.06em"
+            tt="uppercase"
+            underline="hover"
+          >
+            Datenschutz
+          </Anchor>
           <ActionIcon
             component="a"
             href="https://www.instagram.com/auto_deko"

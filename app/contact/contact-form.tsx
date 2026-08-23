@@ -4,6 +4,7 @@ import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import {
   Alert,
+  Anchor,
   Box,
   Button,
   Checkbox,
@@ -149,7 +150,15 @@ export function ContactForm({ product }: ContactFormProps) {
 
         <Checkbox
           name="privacy"
-          label="Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden."
+          label={
+            <>
+              Ich habe die{" "}
+              <Anchor component="a" href="/privacy" c="var(--color-ink)" underline="always">
+                Datenschutzerklärung
+              </Anchor>{" "}
+              gelesen.
+            </>
+          }
           required
           error={state.errors.privacyAccepted}
           radius={0}
