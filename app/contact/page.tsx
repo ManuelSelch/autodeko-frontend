@@ -44,28 +44,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <PageBreadcrumbs currentPage="Kontakt" />
 
       <Grid gutter="clamp(3rem, 7vw, 8rem)" maw="92rem" mx="auto" align="flex-start">
-        <GridCol span={{ base: 12, md: 5 }}>
-          <Stack gap={0} maw="34rem">
-            <Group gap="sm" mb={24}>
-              <Box w={44} h={2} bg="var(--color-accent)" />
-              <Text
-                c="var(--color-muted)"
-                fz="xs"
-                fw={600}
-                lts="0.14em"
-                tt="uppercase"
-              >
-                Kontakt
-              </Text>
-            </Group>
-
-
-
-
-          </Stack>
-        </GridCol>
-
-        <GridCol span={{ base: 12, md: 7 }}>
+        <GridCol span={{ base: 12 }}>
           <Box bg="var(--color-paper)" p="clamp(1.5rem, 4vw, 4rem)">
             {product && (
               <Box
