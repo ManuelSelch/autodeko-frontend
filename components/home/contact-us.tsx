@@ -38,7 +38,7 @@ export function ContactUs() {
               maw="11ch"
               tt="uppercase"
             >
-              Du hast ein besonderes Teil?
+              Dein Traumauto?
             </Title>
           </Stack>
         </GridCol>
