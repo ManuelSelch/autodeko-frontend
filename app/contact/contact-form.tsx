@@ -138,7 +138,7 @@ export function ContactForm({ product }: ContactFormProps) {
         <Textarea
           name="message"
           label="Nachricht"
-          placeholder="Erzähl uns von deinem Autoteil oder deiner Idee."
+          placeholder={product ? "Beschreibe uns kurz deine Anfrage zu diesem Produkt" : "Erzähl uns von deiner Idee"}
           required
           error={state.errors.message}
           radius={0}

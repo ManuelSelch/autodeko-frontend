@@ -59,26 +59,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </Text>
             </Group>
 
-            <Title
-              order={1}
-              ff="var(--font-display)"
-              fz="clamp(2.75rem, 5vw, 5rem)"
-              fw={500}
-              lh={0.98}
-              lts="-0.04em"
-              maw="10ch"
-              tt="uppercase"
-            >
-              Lass uns etwas Einzigartiges bauen.
-            </Title>
 
-            <Text c="var(--color-muted)" fz="1.05rem" lh={1.75} maw="31rem" mt={32}>
-              Beschreibe uns kurz deine Anfrage zu diesem Produkt
-            </Text>
 
-            <Text c="var(--color-muted)" fz="sm" lh={1.6} mt={24}>
-              In der Regel beantworten wir Anfragen innerhalb weniger Werktage.
-            </Text>
+
           </Stack>
         </GridCol>
 
