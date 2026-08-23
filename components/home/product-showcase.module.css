@@ -93,22 +93,6 @@
   }
 }
 
-@media (hover: none), (pointer: coarse) {
-  .detailsButton {
-    transition-duration: 80ms;
-  }
-
-  .productCard:active .detailsButton {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .productCard:active .productImage {
-    filter: brightness(0.94);
-    transform: scale(1.02);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .productImage,
   .detailsButton {

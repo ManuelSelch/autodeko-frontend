@@ -22,9 +22,10 @@ const product: Product = {
 };
 
 describe("ProductCard", () => {
-  it("reveals the details action only while a touch card is active", () => {
-    expect(styles).toContain("@media (hover: none), (pointer: coarse)");
-    expect(styles).toContain(".productCard:active .detailsButton");
+  it("does not apply hover-style effects to touch interactions", () => {
+    expect(styles).not.toContain("@media (hover: none), (pointer: coarse)");
+    expect(styles).not.toContain(".productCard:active .detailsButton");
+    expect(styles).not.toContain(".productCard:active .productImage");
   });
 
   it("offers a details action that links to the product page", () => {
