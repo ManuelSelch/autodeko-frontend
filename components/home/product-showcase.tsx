@@ -12,28 +12,29 @@ import {
   Title,
 } from "@mantine/core";
 import autoFass from "@/img/auto-fass.png";
+import { buildProductInquiryHref } from "@/lib/contact/product-inquiry";
 import { curateProducts } from "@/lib/shopify/curate-products";
 import { formatMoney } from "@/lib/shopify/format-money";
 import type { Product } from "@/lib/shopify/types";
 import classes from "./product-showcase.module.css";
 
-function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product }: { product: Product }) {
+  const productHref = `/products/${product.handle}`;
+
   return (
-    <Box
-      component="a"
-      className={classes.productLink}
-      href={`/products/${product.handle}`}
-      c="inherit"
-      display="block"
-    >
-      <Box component="article" miw={0}>
-        <AspectRatio ratio={4 / 5}>
+    <Box component="article" className={classes.productCard} miw={0}>
+      <AspectRatio ratio={4 / 5}>
+        <Box className={classes.imageCanvas} pos="relative">
           <Box
-            className={classes.imageCanvas}
-            pos="relative"
-            style={{ overflow: "hidden" }}
+            component="a"
+            className={classes.imageLink}
+            href={productHref}
+            aria-label={`${product.title} ansehen`}
+            pos="absolute"
+            style={{ inset: 0 }}
           >
             <Image
+              className={classes.productImage}
               src={product.featuredImage?.url ?? autoFass.src}
               alt={product.featuredImage?.altText ?? product.title}
               fit="contain"
@@ -42,55 +43,69 @@ function ProductCard({ product }: { product: Product }) {
               loading="lazy"
               draggable={false}
             />
-
-            {!product.availableForSale && (
-              <Box
-                pos="absolute"
-                top={{ base: 10, sm: 14 }}
-                left={{ base: 10, sm: 14 }}
-                bg="var(--color-ink)"
-                c="var(--color-paper)"
-                px={{ base: 10, sm: 12 }}
-                py={{ base: 6, sm: 8 }}
-              >
-                <Text
-                  fz={{ base: "0.62rem", sm: "0.68rem" }}
-                  fw={700}
-                  lts="0.07em"
-                  tt="uppercase"
-                >
-                  Ausverkauft
-                </Text>
-              </Box>
-            )}
           </Box>
-        </AspectRatio>
 
-        <Stack hiddenFrom="sm" gap={4} pt={14}>
+          {!product.availableForSale && (
+            <Box
+              pos="absolute"
+              top={{ base: 10, sm: 14 }}
+              left={{ base: 10, sm: 14 }}
+              bg="var(--color-ink)"
+              c="var(--color-paper)"
+              px={{ base: 10, sm: 12 }}
+              py={{ base: 6, sm: 8 }}
+              style={{ zIndex: 2 }}
+            >
+              <Text
+                fz={{ base: "0.62rem", sm: "0.68rem" }}
+                fw={700}
+                lts="0.07em"
+                tt="uppercase"
+              >
+                Ausverkauft
+              </Text>
+            </Box>
+          )}
+
+          <Box
+            component="a"
+            className={classes.inquiryButton}
+            href={buildProductInquiryHref(product.handle)}
+            aria-label={`${product.title} anfragen`}
+          >
+            Anfragen
+          </Box>
+        </Box>
+      </AspectRatio>
+
+      <Stack hiddenFrom="sm" gap={4} pt={14}>
+        <Box component="a" className={classes.productTitleLink} href={productHref}>
           <Text component="h3" fz="0.9rem" fw={600} lineClamp={2}>
             {product.title}
           </Text>
-          <Text c="var(--color-muted)" fz="0.9rem" style={{ whiteSpace: "nowrap" }}>
-            {formatMoney(product.price)}
-          </Text>
-        </Stack>
+        </Box>
+        <Text c="var(--color-muted)" fz="0.9rem" style={{ whiteSpace: "nowrap" }}>
+          {formatMoney(product.price)}
+        </Text>
+      </Stack>
 
-        <Group
-          visibleFrom="sm"
-          justify="space-between"
-          align="flex-start"
-          gap={16}
-          pt={16}
-          wrap="nowrap"
-        >
+      <Group
+        visibleFrom="sm"
+        justify="space-between"
+        align="flex-start"
+        gap={16}
+        pt={16}
+        wrap="nowrap"
+      >
+        <Box component="a" className={classes.productTitleLink} href={productHref}>
           <Text component="h3" fz="0.93rem" fw={600}>
             {product.title}
           </Text>
-          <Text c="var(--color-muted)" fz="0.93rem" style={{ whiteSpace: "nowrap" }}>
-            {formatMoney(product.price)}
-          </Text>
-        </Group>
-      </Box>
+        </Box>
+        <Text c="var(--color-muted)" fz="0.93rem" style={{ whiteSpace: "nowrap" }}>
+          {formatMoney(product.price)}
+        </Text>
+      </Group>
     </Box>
   );
 }
