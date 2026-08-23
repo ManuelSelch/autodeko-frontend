@@ -1,8 +1,14 @@
+import { readFileSync } from "node:fs";
 import { MantineProvider } from "@mantine/core";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import type { Product } from "@/lib/shopify/types";
 import { ProductCard } from "./product-showcase";
+
+const styles = readFileSync(
+  new URL("./product-showcase.module.css", import.meta.url),
+  "utf8",
+);
 
 const product: Product = {
   id: "gid://shopify/Product/1",
@@ -16,6 +22,11 @@ const product: Product = {
 };
 
 describe("ProductCard", () => {
+  it("reveals the details action only while a touch card is active", () => {
+    expect(styles).toContain("@media (hover: none), (pointer: coarse)");
+    expect(styles).toContain(".productCard:active .detailsButton");
+  });
+
   it("offers a details action that links to the product page", () => {
     const markup = renderToStaticMarkup(
       <MantineProvider>

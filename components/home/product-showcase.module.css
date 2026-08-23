@@ -60,6 +60,9 @@
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px);
   transition: opacity 220ms ease, transform 220ms ease, background-color 180ms ease;
 }
 
@@ -69,13 +72,13 @@
   background: var(--color-accent);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .detailsButton {
-    pointer-events: none;
-    opacity: 0;
-    transform: translateY(12px);
-  }
+.detailsButton:focus-visible {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
 
+@media (hover: hover) and (pointer: fine) {
   .productCard:hover .detailsButton,
   .productCard:focus-within .detailsButton {
     pointer-events: auto;
@@ -87,6 +90,22 @@
   .productCard:focus-within .productImage {
     filter: brightness(0.94);
     transform: scale(1.04);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .detailsButton {
+    transition-duration: 80ms;
+  }
+
+  .productCard:active .detailsButton {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .productCard:active .productImage {
+    filter: brightness(0.94);
+    transform: scale(1.02);
   }
 }
 
