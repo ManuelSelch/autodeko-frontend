@@ -45,9 +45,9 @@
 
 .detailsButton {
   position: absolute;
-  right: clamp(0.5rem, 1.2vw, 0.875rem);
-  bottom: clamp(0.5rem, 1.2vw, 0.875rem);
-  left: clamp(0.5rem, 1.2vw, 0.875rem);
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 3;
   display: flex;
   min-height: 44px;
