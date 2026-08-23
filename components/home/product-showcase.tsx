@@ -137,7 +137,7 @@ export default function ProductShowcase({ products }: { products: Product[] }) {
                 maw="12ch"
                 tt="uppercase"
               >
-                Ausgewählte Einzelstücke
+                Produkte
               </Title>
             </GridCol>
 

@@ -70,9 +70,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </Title>
 
             <Text c="var(--color-muted)" fz="1.05rem" lh={1.75} maw="31rem" mt={32}>
-              Du hast ein besonderes Fahrzeugteil, eine Produktfrage oder eine Idee
-              für eine Sonderanfertigung? Beschreibe uns dein Projekt – wir melden
-              uns persönlich bei dir.
+              Beschreibe uns kurz deine Anfrage zu diesem Produkt
             </Text>
 
             <Text c="var(--color-muted)" fz="sm" lh={1.6} mt={24}>
