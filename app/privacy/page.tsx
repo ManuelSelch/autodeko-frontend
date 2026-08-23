@@ -9,6 +9,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Datenschutz | Auto Deko",
@@ -32,6 +33,8 @@ export default function PrivacyPage() {
       py="clamp(4rem, 8vw, 8rem)"
     >
       <Box maw="52rem" mx="auto">
+        <PageBreadcrumbs currentPage="Datenschutz" />
+
         <Text
           c="var(--color-accent)"
           fz="xs"

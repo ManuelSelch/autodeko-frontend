@@ -11,6 +11,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
 import { parseProductHandle } from "@/lib/contact/product-inquiry";
@@ -40,6 +41,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       px="clamp(1.25rem, 5vw, 5.5rem)"
       py="clamp(4rem, 8vw, 8rem)"
     >
+      <PageBreadcrumbs currentPage="Kontakt" />
+
       <Grid gutter="clamp(3rem, 7vw, 8rem)" maw="92rem" mx="auto" align="flex-start">
         <GridCol span={{ base: 12, md: 5 }}>
           <Stack gap={0} maw="34rem">

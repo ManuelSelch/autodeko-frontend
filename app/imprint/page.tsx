@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anchor, Box, Divider, Stack, Text, Title } from "@mantine/core";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Impressum | Auto Deko",
@@ -17,6 +18,8 @@ export default function ImprintPage() {
       py="clamp(4rem, 8vw, 8rem)"
     >
       <Box maw="52rem" mx="auto">
+        <PageBreadcrumbs currentPage="Impressum" />
+
         <Text
           c="var(--color-accent)"
           fz="xs"

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  Anchor,
   Box,
   Button,
   Divider,
@@ -11,6 +10,7 @@ import {
   Title,
 } from "@mantine/core";
 import { notFound } from "next/navigation";
+import { PageBreadcrumbs } from "@/components/page-breadcrumbs";
 import autoFass from "@/img/auto-fass.png";
 import api from "@/lib/api";
 import { buildProductInquiryHref } from "@/lib/contact/product-inquiry";
@@ -68,39 +68,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
       pt="clamp(2rem, 5vw, 5rem)"
       pb="clamp(5rem, 9vw, 9rem)"
     >
-      <Group
-        component="nav"
-        aria-label="Brotkrümelnavigation"
-        gap="sm"
-        maw="92rem"
-        mx="auto"
-        mb="clamp(2rem, 4vw, 4rem)"
-      >
-        <Anchor
-          component="a"
-          href="/#produkte"
-          c="var(--color-ink)"
-          fz="xs"
-          fw={600}
-          lts="0.07em"
-          tt="uppercase"
-          underline="hover"
-        >
-          Produkte
-        </Anchor>
-        <Text c="var(--color-muted)" fz="xs" aria-hidden="true">
-          /
-        </Text>
-        <Text
-          c="var(--color-muted)"
-          fz="xs"
-          fw={600}
-          lts="0.07em"
-          tt="uppercase"
-        >
-          {product.title}
-        </Text>
-      </Group>
+      <PageBreadcrumbs
+        currentPage={product.title}
+        parent={{ href: "/#produkte", label: "Produkte" }}
+      />
 
       <Grid gutter="clamp(3rem, 7vw, 8rem)" align="flex-start" maw="92rem" mx="auto">
         <GridCol span={{ base: 12, md: 7 }}>
