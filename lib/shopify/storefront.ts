@@ -156,7 +156,7 @@ export function createStorefrontClient(
         "Shopify-Storefront-Private-Token": config.privateToken,
       },
       body: JSON.stringify({ query: document, variables }),
-      cache: "no-store",
+      next: { revalidate: 300 },
     });
 
     if (!response.ok) {
